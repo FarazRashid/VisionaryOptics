@@ -33,6 +33,7 @@ public class Cart {
 	 */
 	public Integer getTotalAmount() {
 	 	 return totalAmount; 
+	 	 
 	}
 	/**
 	 * Setter of totalAmount
