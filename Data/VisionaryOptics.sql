@@ -75,8 +75,13 @@ INSERT INTO CartProduct (cartId, productId) VALUES
 (1, 2),
 (1, 3);
 
-
-
-
+UPDATE Cart
+SET totalAmount = (
+    SELECT SUM(Products.price)
+    FROM CartProduct
+    INNER JOIN Products ON CartProduct.productId = Products.productId
+    WHERE CartProduct.cartId = 1
+)
+WHERE cartId = 1;
 
 
