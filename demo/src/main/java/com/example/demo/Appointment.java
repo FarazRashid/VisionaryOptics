@@ -94,7 +94,7 @@ public class Appointment {
 	 * 
 	 * @param info 
 	 */
-	public void contactInfo(EJavaObject info) { 
+	public void contactInfo(Optician Opticianinfo) {
 		// TODO Auto-generated method
 	 }
 	/**
