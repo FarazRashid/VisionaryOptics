@@ -1,4 +1,5 @@
 
+package com.example.demo;
 
 public class Reports {
 
@@ -26,7 +27,7 @@ public class Reports {
 	 * @param reportType 
 	 * @return 
 	 */
-	public EJavaObject generateReport(String reportType) { 
+	public Reports generateReport(String reportType) {
 		// TODO Auto-generated method
 		return null;
 	 } 

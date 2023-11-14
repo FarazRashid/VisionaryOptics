@@ -42,7 +42,7 @@ public class Optician extends User {
 	 * @param date 
 	 * @return 
 	 */
-	public EEList checkAvailability(String time, String date) { 
+	public List<Optician> checkAvailability(String time, String date) {
 		// TODO Auto-generated method
 		return null;
 	 }
@@ -51,7 +51,7 @@ public class Optician extends User {
 	 * @param reportType 
 	 * @return 
 	 */
-	public EJavaObject selectReportType(String reportType) { 
+	public Reports selectReportType(String reportType) {
 		// TODO Auto-generated method
 		return null;
 	 }

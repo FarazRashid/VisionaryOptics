@@ -101,7 +101,7 @@ public class User {
 	 * @param personId 
 	 * @return 
 	 */
-	public EJavaObject accessDetails(Integer personId) { 
+	public Customer accessDetails(Integer personId) {
 		// TODO Auto-generated method
 		return null;
 	 } 

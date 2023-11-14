@@ -94,7 +94,7 @@ public class Customer extends User {
 	 * 
 	 * @return 
 	 */
-	public EJavaObject registerCustomer() {
+	public Customer registerCustomer() {
 		// TODO Auto-generated method
 		return null;
 	 }

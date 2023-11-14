@@ -15,7 +15,7 @@ public class Inventory {
 	/**
 	 * 
 	 */
-	private EEList listOfProducts;
+	private List<Products> listOfProducts;
 	/**
 	 * Getter of productId
 	 */
@@ -43,13 +43,13 @@ public class Inventory {
 	/**
 	 * Getter of listOfProducts
 	 */
-	public EEList getListOfProducts() {
+	public List<Products> getListOfProducts() {
 	 	 return listOfProducts; 
 	}
 	/**
 	 * Setter of listOfProducts
 	 */
-	public void setListOfProducts(EEList listOfProducts) { 
+	public void setListOfProducts(List<Products> listOfProducts) {
 		 this.listOfProducts = listOfProducts; 
 	}
 	/**
@@ -57,7 +57,7 @@ public class Inventory {
 	 * @param selectedItems 
 	 * @return 
 	 */
-	public EJavaObject checkItemAvailability(EJavaObject selectedItems) { 
+	public Products checkItemAvailability(Products selectedItems) {
 		// TODO Auto-generated method
 		return null;
 	 }
@@ -66,7 +66,7 @@ public class Inventory {
 	 * @param selectedItems 
 	 * @return 
 	 */
-	public Boolean updateStock(EJavaObject selectedItems) { 
+	public Boolean updateStock(Products selectedItems) {
 		// TODO Auto-generated method
 		return null;
 	 }
@@ -74,7 +74,7 @@ public class Inventory {
 	 * 
 	 * @return 
 	 */
-	public EEList requestProductCategories() { 
+	public List<Products> requestProductCategories() {
 		// TODO Auto-generated method
 		return null;
 	 }
@@ -84,7 +84,7 @@ public class Inventory {
 	 * @param operationType 
 	 * @return 
 	 */
-	public EJavaObject managementOperation(EJavaObject listingInfo, String operationType) { 
+	public List<Products> managementOperation(List<Products> listingInfo, String operationType) {
 		// TODO Auto-generated method
 		return null;
 	 }
@@ -93,7 +93,7 @@ public class Inventory {
 	 * @param category 
 	 * @return 
 	 */
-	public EEList requestsProducts(String category) { 
+	public List<Products> requestsProducts(String category) {
 		// TODO Auto-generated method
 		return null;
 	 } 

@@ -94,7 +94,7 @@ public class System {
 	 * 
 	 * @return 
 	 */
-	public EEList displayProductCategories() { 
+	public List<Products> displayProductCategories() {
 		// TODO Auto-generated method
 		return null;
 	 }
@@ -102,7 +102,7 @@ public class System {
 	 * 
 	 * @return 
 	 */
-	public EEList displayProducts() { 
+	public List<Products> displayProducts() {
 		// TODO Auto-generated method
 		return null;
 	 }
@@ -135,7 +135,7 @@ public class System {
 	 * 
 	 * @return 
 	 */
-	public EJavaObject sendOrderConfirmation() { 
+	public Order sendOrderConfirmation() {
 		// TODO Auto-generated method
 		return null;
 	 }

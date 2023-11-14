@@ -58,7 +58,7 @@ public class Cart {
 	 * @param selectedItems 
 	 * @return 
 	 */
-	public EJavaObject requestPlaceOrder(EJavaObject selectedItems) { 
+	public Cart requestPlaceOrder(Products selectedItems) {
 		// TODO Auto-generated method
 		return null;
 	 }
@@ -66,14 +66,14 @@ public class Cart {
 	 * 
 	 * @param cart 
 	 */
-	public void proceedToCheckout(EJavaObject cart) { 
+	public void proceedToCheckout(Cart cart) {
 		// TODO Auto-generated method
 	 }
 	/**
 	 * 
 	 * @return 
 	 */
-	public EJavaObject displayUpdatedCartContents() { 
+	public Cart displayUpdatedCartContents() {
 		// TODO Auto-generated method
 		return null;
 	 }
@@ -81,7 +81,7 @@ public class Cart {
 	 * 
 	 * @return 
 	 */
-	public EJavaObject requestCartContents() { 
+	public Cart requestCartContents() {
 		// TODO Auto-generated method
 		return null;
 	 }

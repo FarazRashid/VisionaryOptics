@@ -56,7 +56,7 @@ public class DbHandler {
 	 * @param object 
 	 * @return 
 	 */
-	public String update(String query, EJavaObject object) { 
+	public String update(String query, Customer object) {
 		// TODO Auto-generated method
 		return null;
 	 }
@@ -66,7 +66,7 @@ public class DbHandler {
 	 * @param query 
 	 * @return 
 	 */
-	public String save(EJavaObject object, String query) { 
+	public String save(Customer object, String query) {
 		// TODO Auto-generated method
 		return null;
 	 }
@@ -76,7 +76,7 @@ public class DbHandler {
 	 * @param object 
 	 * @return 
 	 */
-	public String delete(String query, EJavaObject object) { 
+	public String delete(String query, Customer object) {
 		// TODO Auto-generated method
 		return null;
 	 }
@@ -86,7 +86,7 @@ public class DbHandler {
 	 * @param query 
 	 * @return 
 	 */
-	public String create(EJavaObject object, String query) { 
+	public String create(Customer object, String query) {
 		// TODO Auto-generated method
 		return null;
 	 } 
