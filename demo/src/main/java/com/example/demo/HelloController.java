@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
+
 import java.io.IOException;
 
 public class HelloController {
@@ -32,11 +33,26 @@ public class HelloController {
     void onClickLoginButton(ActionEvent event) {
 
         if(loginEmailTextField.getText().isBlank() == false && loginPasswordTextField.getText().isBlank() == false && validateEmail()){
-            loginMessageLabel.setText("Login Successful!");
+            String email = loginEmailTextField.getText();
+            String password = loginPasswordTextField.getText();
+
+            DbHandler dbHandler = new DbHandler();
+
+            if (dbHandler.validateLogin(email, password)) {
+                // Login successful, switch to the desired scene
+                loginMessageLabel.setText("Login Successful!");
+            } else {
+                // Login failed, you may show an error message or take appropriate action
+                loginMessageLabel.setText("Login failed. Invalid credentials.");
+            }
+
         }
         else{
             loginMessageLabel.setText("Please enter username and password!");
         }
+
+
+
 
     }
     @FXML

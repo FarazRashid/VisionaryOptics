@@ -25,6 +25,8 @@ public class DbHandler {
 		connectionString = "jdbc:mysql://localhost:3306/VisionaryOptics";
 		username = "root";
 		password = "1234";
+
+
 	}
 
 	/**
@@ -69,7 +71,7 @@ public class DbHandler {
 	 * @return 
 	 */
 	public String update(Customer object) {
-		String query = "UPDATE customers SET name=?, password=?, address=?, phoneNumber=?, email=? WHERE customerId=?";
+		String query = "UPDATE customer SET name=?, password=?, address=?, phoneNumber=?, email=? WHERE customerId=?";
 		// TODO Auto-generated method
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -95,26 +97,24 @@ public class DbHandler {
 	 * @param password
 	 * @return 
 	 */
-	public Boolean validateLogin(String email, String password) {
-		String query = "SELECT * FROM customers WHERE email=? AND password=?";
+	public boolean validateLogin(String email, String password) {
+		String query = "SELECT * FROM customer WHERE email=? AND password=?";
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-			// SELECT * FROM customers WHERE email=? AND password=?
 			preparedStatement.setString(1, email);
 			preparedStatement.setString(2, password);
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 
-            // The result set is not empty
-            return resultSet.next();
-
-
-        } catch (SQLException e) {
+			// The result set is not empty
+			return resultSet.next();
+		} catch (SQLException e) {
 			e.printStackTrace();
+			// Return false in case of any exception
+			return false;
 		}
+	}
 
-		return null;
-	 }
 
 	/**
 	 * 
@@ -122,7 +122,7 @@ public class DbHandler {
 	 * @return 
 	 */
 	public String delete(Customer object)  {
-		String query = "DELETE FROM customers WHERE CustomerId=?";
+		String query = "DELETE FROM customer WHERE CustomerId=?";
 		// TODO Auto-generated method
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -143,7 +143,7 @@ public class DbHandler {
 	 * @return
 	 */
 	public String create(Customer object) {
-		String query = "INSERT INTO customers (name, password, address, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
+		String query = "INSERT INTO customer (name, password, address, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
 
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
