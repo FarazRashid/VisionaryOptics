@@ -70,7 +70,7 @@ public class DbHandler {
 	 * @param object
 	 * @return 
 	 */
-	public String update(Customer object) {
+	public Boolean update(Customer object) {
 		String query = "UPDATE customer SET name=?, password=?, address=?, phoneNumber=?, email=? WHERE customerId=?";
 		// TODO Auto-generated method
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
@@ -85,24 +85,25 @@ public class DbHandler {
 
 				int affectedRows = preparedStatement.executeUpdate();
 
-			return "Update successful. Affected rows: " + affectedRows;
+				return affectedRows>0;
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "Update failed: " + e.getMessage();
+			return false;
 		}
 	 }
 	/**
 	 * 
 	 * @param email
-	 * @param password
+	 * @param accountPassword
 	 * @return 
 	 */
-	public boolean validateLogin(String email, String password) {
+	public boolean validateLogin(String email, String accountPassword) {
 		String query = "SELECT * FROM customer WHERE email=? AND password=?";
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 			preparedStatement.setString(1, email);
-			preparedStatement.setString(2, password);
+			preparedStatement.setString(2, accountPassword);
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -118,48 +119,49 @@ public class DbHandler {
 
 	/**
 	 * 
-	 * @param object
+	 * @param customer
 	 * @return 
 	 */
-	public String delete(Customer object)  {
+	public Boolean delete(Customer customer)  {
 		String query = "DELETE FROM customer WHERE CustomerId=?";
 		// TODO Auto-generated method
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 			// DELETE FROM customers WHERE customerId=?
-			preparedStatement.setInt(1, object.getCustomerId());
+			preparedStatement.setInt(1, customer.getCustomerId());
 
 			int affectedRows = preparedStatement.executeUpdate();
 
-			return "Delete successful. Affected rows: " + affectedRows;
+			return affectedRows>0;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "Delete failed: " + e.getMessage();
+			return false;
 		}
 	 }
 	/**
 	 * 
-	 * @param object 
+	 * @param customer
 	 * @return
 	 */
-	public String create(Customer object) {
+	public Boolean create(Customer customer) {
 		String query = "INSERT INTO customer (name, password, address, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
 
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-			// INSERT INTO customers (name, password, address, phoneNumber, email) VALUES (?, ?, ?, ?, ?)
-			preparedStatement.setString(1, object.getName());
-			preparedStatement.setString(2, object.getPassword());
-			preparedStatement.setString(3, object.getAddress());
-			preparedStatement.setString(4, object.getPhoneNumber());
-			preparedStatement.setString(5, object.getEmail());
+			// INSERT INTO customer (name, password, address, phoneNumber, email) VALUES (?, ?, ?, ?, ?)
+			preparedStatement.setString(1, customer.getName());
+			preparedStatement.setString(2, customer.getPassword());
+			preparedStatement.setString(3, customer.getAddress());
+			preparedStatement.setString(4, customer.getPhoneNumber());
+			preparedStatement.setString(5, customer.getEmail());
 
 			int affectedRows = preparedStatement.executeUpdate();
 
-			return "Update successful. Affected rows: " + affectedRows;
+			return affectedRows > 0;
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "Update failed: " + e.getMessage();
+			return false;
 		}
 	 }
 
