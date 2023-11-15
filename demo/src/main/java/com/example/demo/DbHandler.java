@@ -7,7 +7,7 @@ public class DbHandler {
 	 */
 	private String username;
 	/**
-	 * 
+	 *
 	 */
 	private Integer connectionString;
 	/**

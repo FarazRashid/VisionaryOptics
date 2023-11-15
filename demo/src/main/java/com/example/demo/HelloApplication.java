@@ -11,22 +11,35 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+
+    private static HelloApplication instance;
+    private Stage primaryStage;
+
+    public void switchScene(String fxmlFileName, String imageFilePath) throws IOException {
+        if (primaryStage == null) {
+            throw new IllegalStateException("Primary stage is not initialized.");
+        }
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fxmlFileName));
         Parent root = fxmlLoader.load();
 
-        // Get the reference to the ImageView in the FXML file
         ImageView imageView = (ImageView) fxmlLoader.getNamespace().get("logoImageView");
 
-        // Load the image and set it to the ImageView
-        Image image = new Image("file:Assets/logo.JPG");
+        Image image = new Image("file:" + imageFilePath);
         imageView.setImage(image);
 
-        Scene scene = new Scene(root,1280,720);
-        stage.setTitle("Hello Eva PTSD!");
-        stage.setScene(scene);
-        stage.show();
+        Scene scene = new Scene(root, 1280, 720);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public void start(Stage primaryStage) throws Exception {
+        instance = this;
+        this.primaryStage = primaryStage;
+        switchScene("register.fxml", "Assets/logo.JPG");  // Load your initial scene
+    }
+
+    public static HelloApplication getInstance() {
+        return instance;
     }
 
     public static void main(String[] args) {

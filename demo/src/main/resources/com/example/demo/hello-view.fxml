@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="899.0" prefWidth="1213.0" style="-fx-background-color: #fcfcfc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #fcfcfc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
    <left>
       <AnchorPane prefHeight="899.0" prefWidth="596.0" style="-fx-background-color: #fcfcfc;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="logoImageView" fitHeight="502.0" fitWidth="606.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="logoImageView" fitHeight="502.0" fitWidth="606.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </left>
@@ -24,7 +24,9 @@
             <Label layoutX="83.0" layoutY="450.0" text="Password" />
             <PasswordField fx:id="loginPasswordTextField" layoutX="229.0" layoutY="438.0" prefHeight="25.0" prefWidth="222.0" promptText="Password" />
             <TextField fx:id="loginUsernameTextField" layoutX="230.0" layoutY="319.0" prefHeight="25.0" prefWidth="220.0" promptText="Username" />
-            <Button fx:id="loginButton" layoutX="83.0" layoutY="603.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="404.0" text="Login" />
+            <Button fx:id="loginButton" layoutX="83.0" layoutY="603.0" mnemonicParsing="false" onAction="#onClickLoginButton" prefHeight="29.0" prefWidth="404.0" text="Login" />
+            <Button fx:id="switchToRegisterButton" layoutX="83.0" layoutY="650.0" mnemonicParsing="false" onAction="#onClickSwitchToRegister" prefHeight="29.0" prefWidth="404.0" text="Switch to Register" />
+            <Label fx:id="loginMessageLabel" layoutX="79.0" layoutY="227.0" prefHeight="17.0" prefWidth="371.0" textFill="#e81313" />
          </children>
       </AnchorPane>
    </right>
