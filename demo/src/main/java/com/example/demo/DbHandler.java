@@ -65,15 +65,15 @@ public class DbHandler {
 	}
 	/**
 	 * 
-	 * @param query 
-	 * @param object 
+	 * @param object
 	 * @return 
 	 */
-	public String update(String query, Customer object) {
+	public String update(Customer object) {
+		String query = "UPDATE customers SET name=?, password=?, address=?, phoneNumber=?, email=? WHERE customerId=?";
 		// TODO Auto-generated method
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-			 // UPDATE customers SET name=?, password=?, address=?, phoneNumber=?, email=? WHERE id=?
+			 // UPDATE customers SET name=?, password=?, address=?, phoneNumber=?, email=? WHERE customerId=?
 				preparedStatement.setString(1, object.getName());
 				preparedStatement.setString(2, object.getPassword());
 				preparedStatement.setString(3, object.getAddress());
@@ -91,17 +91,17 @@ public class DbHandler {
 	 }
 	/**
 	 * 
-	 * @param object 
-	 * @param query 
+	 * @param email
+	 * @param password
 	 * @return 
 	 */
-	public Boolean validateLogin(Customer object, String query) {
-
+	public Boolean validateLogin(String email, String password) {
+		String query = "SELECT * FROM customers WHERE email=? AND password=?";
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 			// SELECT * FROM customers WHERE email=? AND password=?
-			preparedStatement.setString(1, object.getEmail());
-			preparedStatement.setString(2, object.getPassword());
+			preparedStatement.setString(1, email);
+			preparedStatement.setString(2, password);
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -118,15 +118,15 @@ public class DbHandler {
 
 	/**
 	 * 
-	 * @param query 
-	 * @param object 
+	 * @param object
 	 * @return 
 	 */
-	public String delete(String query, Customer object) {
+	public String delete(Customer object)  {
+		String query = "DELETE FROM customers WHERE CustomerId=?";
 		// TODO Auto-generated method
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-			// DELETE FROM customers WHERE id=?
+			// DELETE FROM customers WHERE customerId=?
 			preparedStatement.setInt(1, object.getCustomerId());
 
 			int affectedRows = preparedStatement.executeUpdate();
