@@ -23,7 +23,7 @@ public class HelloApplication extends Application {
         Image image = new Image("file:Assets/logo.JPG");
         imageView.setImage(image);
 
-        Scene scene = new Scene(root,1213,899);
+        Scene scene = new Scene(root,1280,720);
         stage.setTitle("Hello Eva PTSD!");
         stage.setScene(scene);
         stage.show();
