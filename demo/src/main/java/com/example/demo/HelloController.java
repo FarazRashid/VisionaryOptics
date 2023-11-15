@@ -23,7 +23,7 @@ public class HelloController {
     private PasswordField loginPasswordTextField;
 
     @FXML
-    private TextField loginUsernameTextField;
+    private TextField loginEmailTextField;
 
     @FXML
     private ImageView logoImageView;
@@ -31,7 +31,7 @@ public class HelloController {
     @FXML
     void onClickLoginButton(ActionEvent event) {
 
-        if(loginUsernameTextField.getText().isBlank() == false && loginPasswordTextField.getText().isBlank() == false){
+        if(loginEmailTextField.getText().isBlank() == false && loginPasswordTextField.getText().isBlank() == false && validateEmail()){
             loginMessageLabel.setText("Login Successful!");
         }
         else{
@@ -43,6 +43,14 @@ public class HelloController {
     void onClickSwitchToRegister(ActionEvent event) throws IOException {
         // get reference to existing hello application and switch scene
         HelloApplication.getInstance().switchScene("register.fxml", "Assets/logo.JPG");
+    }
+
+    private boolean validateEmail() {
+        if (!loginEmailTextField.getText().contains("@") || !loginEmailTextField.getText().contains(".com")) {
+            loginMessageLabel.setText("Email must contain @ and .com!");
+            return false;
+        }
+        return true;
     }
 
 }

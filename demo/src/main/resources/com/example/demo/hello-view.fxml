@@ -20,10 +20,10 @@
       <AnchorPane prefHeight="899.0" prefWidth="580.0" style="-fx-background-color: #fcfcfc;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="287.0" layoutY="138.0" prefHeight="46.0" prefWidth="34.0" text="Login" />
-            <Label layoutX="81.0" layoutY="323.0" text="Username" />
+            <Label layoutX="81.0" layoutY="323.0" text="Email" />
             <Label layoutX="83.0" layoutY="450.0" text="Password" />
             <PasswordField fx:id="loginPasswordTextField" layoutX="229.0" layoutY="438.0" prefHeight="25.0" prefWidth="222.0" promptText="Password" />
-            <TextField fx:id="loginUsernameTextField" layoutX="230.0" layoutY="319.0" prefHeight="25.0" prefWidth="220.0" promptText="Username" />
+            <TextField fx:id="loginEmailTextField" layoutX="230.0" layoutY="319.0" prefHeight="25.0" prefWidth="220.0" promptText="user@email.com" />
             <Button fx:id="loginButton" layoutX="83.0" layoutY="603.0" mnemonicParsing="false" onAction="#onClickLoginButton" prefHeight="29.0" prefWidth="404.0" text="Login" />
             <Button fx:id="switchToRegisterButton" layoutX="83.0" layoutY="650.0" mnemonicParsing="false" onAction="#onClickSwitchToRegister" prefHeight="29.0" prefWidth="404.0" text="Switch to Register" />
             <Label fx:id="loginMessageLabel" layoutX="79.0" layoutY="227.0" prefHeight="17.0" prefWidth="371.0" textFill="#e81313" />
