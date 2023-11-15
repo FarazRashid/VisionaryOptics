@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
         ImageView imageView = (ImageView) fxmlLoader.getNamespace().get("logoImageView");
 
         // Load the image and set it to the ImageView
-        Image image = new Image("file:C:/Users/PC/IdeaProjects/VisionaryOptics/Assets/logo.JPG");
+        Image image = new Image("file:Assets/logo.JPG");
         imageView.setImage(image);
 
         Scene scene = new Scene(root,1213,899);
