@@ -140,11 +140,11 @@ public class DbHandler {
 	/**
 	 * 
 	 * @param object 
-	 * @param query 
-	 * @return 
+	 * @return
 	 */
-	public String create(Customer object, String query) {
-		// TODO Auto-generated method
+	public String create(Customer object) {
+		String query = "INSERT INTO customers (name, password, address, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
+
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 			// INSERT INTO customers (name, password, address, phoneNumber, email) VALUES (?, ?, ?, ?, ?)
