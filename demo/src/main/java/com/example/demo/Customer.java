@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Customer extends User {
 
+//	public Integer customerId;
+
 	/**
 	 * 
 	 */
@@ -22,6 +24,10 @@ public class Customer extends User {
 	private Integer customerId;
 	/**
 	 * 
+	 */
+	private String password;
+	/**
+	 *
 	 */
 	public List<Order> order;
 	/**
@@ -142,6 +148,13 @@ public class Customer extends User {
 	 */
 	public void recieveCustomerSupport() { 
 		// TODO Auto-generated method
-	 } 
+	 }
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }
