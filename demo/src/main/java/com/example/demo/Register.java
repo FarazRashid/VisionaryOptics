@@ -42,7 +42,22 @@ public class Register {
     @FXML
     void onClickRegisterButton(ActionEvent event) {
         if (validateFields() && validatePasswordMatch() && validatePhoneNumber() && validateEmail()) {
-            registerMessageLabel.setText("Register Successful!");
+            DbHandler dbHandler = new DbHandler();
+            String username = registerUsernameTextField.getText();
+            String password = registerPasswordTextField.getText();
+            String email = registerEmailTextField.getText();
+            String phone = registerPhoneTextField.getText();
+            String address = registerAddressField.getText();
+
+            Customer customer = new Customer(username, password, email, phone, address,0);
+
+            if(dbHandler.create(customer)){
+                registerMessageLabel.setText("Account created successfully!");
+            }
+            else{
+                registerMessageLabel.setText("Account creation failed!");
+            }
+
         }
     }
 

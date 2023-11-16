@@ -66,6 +66,11 @@ public class Optician extends User {
 	 */
 	public void viewReports() { 
 		// TODO Auto-generated method
-	 } 
+	 }
+
+	 Optician(String name, String password, String email, String phoneNumber, String address, Integer opticianId){
+		 super(name, password, email, phoneNumber, address);
+		 this.opticianId = opticianId;
+	 }
 
 }

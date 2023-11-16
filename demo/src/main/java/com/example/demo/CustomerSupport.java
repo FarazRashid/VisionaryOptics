@@ -53,4 +53,9 @@ public class CustomerSupport extends User {
 //		return null;
 //	 }
 
+	CustomerSupport(String name, String password, String email, String phoneNumber, String address, Integer supportId){
+		super(name, password, email, phoneNumber, address);
+		this.supportId = supportId;
+	}
+
 }

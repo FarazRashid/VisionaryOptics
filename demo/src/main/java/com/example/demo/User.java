@@ -21,6 +21,19 @@ public class User {
 	/**
 	 * Getter of name
 	 */
+	private String password;
+	/**
+	 * Getter of name
+	 */
+
+	public String getPassword() {
+	 	 return password;
+	}
+
+	public void setPassword(String password) {
+		 this.password = password;
+	}
+
 	public String getName() {
 	 	 return name; 
 	}
@@ -104,6 +117,14 @@ public class User {
 	public Customer accessDetails(Integer personId) {
 		// TODO Auto-generated method
 		return null;
-	 } 
+	 }
+
+	 User(String name, String password, String email, String phoneNumber, String address){
+		 this.name = name;
+		 this.password = password;
+		 this.email = email;
+		 this.phoneNumber = phoneNumber;
+		 this.address = address;
+	 }
 
 }

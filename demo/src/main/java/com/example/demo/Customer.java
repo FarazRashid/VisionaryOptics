@@ -93,6 +93,12 @@ public class Customer extends User {
 	/**
 	 * 
 	 */
+
+	Customer(String name, String password, String email, String phoneNumber, String address, Integer customerId){
+		super(name,  password, email, phoneNumber, address);
+		this.customerId = customerId;
+	}
+
 	public void initiateFeedback() { 
 		// TODO Auto-generated method
 	 }
