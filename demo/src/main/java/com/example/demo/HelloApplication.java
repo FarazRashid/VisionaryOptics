@@ -38,7 +38,7 @@ public class HelloApplication extends Application {
     public void start(Stage primaryStage) throws Exception {
         instance = this;
         this.primaryStage = primaryStage;
-        switchScene("register.fxml", "Assets/logo.JPG");  // Load your initial scene
+        switchScene("customer-homepage.fxml", "");  // Load your initial scene
     }
 
     public static HelloApplication getInstance() {
