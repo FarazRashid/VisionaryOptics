@@ -30,7 +30,7 @@ public class HelloController {
     private ImageView logoImageView;
 
     @FXML
-    void onClickLoginButton(ActionEvent event) {
+    void onClickLoginButton(ActionEvent event) throws IOException {
 
         if(loginEmailTextField.getText().isBlank() == false && loginPasswordTextField.getText().isBlank() == false && validateEmail()){
             String email = loginEmailTextField.getText();
@@ -40,7 +40,7 @@ public class HelloController {
 
             if (dbHandler.validateLogin(email, password)) {
                 // Login successful, switch to the desired scene
-                loginMessageLabel.setText("Login Successful!");
+                HelloApplication.getInstance().switchScene("customer-homepage.fxml", "");
             } else {
                 // Login failed, you may show an error message or take appropriate action
                 loginMessageLabel.setText("Login failed. Invalid credentials.");

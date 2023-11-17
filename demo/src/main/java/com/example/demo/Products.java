@@ -30,14 +30,14 @@ public class Products {
 	 * Getter of type
 	 */
 
-	private String image;
-
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
+//	private String image;
+//
+//	public String getImage() {
+//		return image;
+//	}
+//	public void setImage(String image) {
+//		this.image = image;
+//	}
 
 	public String getType() {
 	 	 return type; 
