@@ -1,5 +1,10 @@
 package com.example.demo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 
-import java.util.List;
 
 public class EditProfileController {
 
@@ -40,77 +44,94 @@ public class EditProfileController {
     @FXML
     private Button saveButton;
 
+    private List<String> editedFields = new ArrayList<>();
+
+    // Existing code...
+
     @FXML
     void onChange(InputMethodEvent event) {
-
+        trackEditedField("name");
     }
 
     @FXML
     void onChangeAddress(InputMethodEvent event) {
-
+        trackEditedField("address");
     }
 
     @FXML
     void onChangeEmail(InputMethodEvent event) {
-
+        trackEditedField("email");
     }
 
     @FXML
     void onChangePassword(InputMethodEvent event) {
-
     }
 
     @FXML
     void onChangePhoneNumber(InputMethodEvent event) {
-
+        trackEditedField("phonenumber");
     }
 
     @FXML
     void onChangeUsername(InputMethodEvent event) {
-
+        trackEditedField("name");
     }
 
-    @FXML
-    void onClickSaveButton(ActionEvent event) {
-        // Get the customer object
-        Customer customer = HelloApplication.getInstance().getCustomer();
-        // Update the customer object
-        customer.setName(registerUsernameTextField.getText());
-        customer.setEmail(registerEmailTextField.getText());
-        customer.setPhoneNumber(registerPhoneTextField.getText());
-        customer.setAddress(registerAddressField.getText());
+    private void trackEditedField(String field) {
+        if (!editedFields.contains(field)) {
+            editedFields.add(field);
+        }
+    }
 
+    @FXML boolean validateCustomer(Customer customer){
         // validate the customer object
         if (customer.getName().isBlank() || customer.getEmail().isBlank() || customer.getPhoneNumber().isBlank() || customer.getAddress().isBlank()) {
             registerMessageLabel.setText("Please fill in all the fields.");
-            return;
+            return false;
         }
         if (!customer.getEmail().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
             registerMessageLabel.setText("Please enter a valid email address.");
-            return;
+            return false;
         }
         if (!customer.getPhoneNumber().matches("^\\+?[0-9]{10,13}$")) {
             registerMessageLabel.setText("Please enter a valid phone number.");
-            return;
+            return false;
         }
         if (!registerPasswordTextField.getText().isBlank()) {
             if (!customer.getPassword().equals(registerPasswordTextField.getText())) {
                 registerMessageLabel.setText("Please enter the correct password.");
-                return;
+                return false;
             }
         }
         else{
             registerMessageLabel.setText("Please enter the password to make changes.");
         }
+        return true;
+    }
+
+    @FXML
+    void onClickSaveButton(ActionEvent event) {
+
+        Customer customer = HelloApplication.getInstance().getCustomer();
+
+        customer.setName(registerUsernameTextField.getText());
+        customer.setEmail(registerEmailTextField.getText());
+        customer.setPhoneNumber(registerPhoneTextField.getText());
+        customer.setAddress(registerAddressField.getText());
+
+        if (!validateCustomer(customer)) return;
+
+
 
         DbHandler dbHandler = new DbHandler();
-        dbHandler.update(customer, List.of("name", "email", "phoneNumber", "address"));
+        dbHandler.update(customer, editedFields);
 
         Customer updatedCustomer = dbHandler.getCustomer(customer.getEmail());
         HelloApplication.getInstance().setCustomer(updatedCustomer);
 
         registerMessageLabel.setText("Success! Changes have been updated");
 
+        editedFields.clear();
 
     }
 
@@ -121,6 +142,22 @@ public class EditProfileController {
         registerEmailTextField.setText(customer.getEmail());
         registerPhoneTextField.setText(customer.getPhoneNumber());
         registerAddressField.setText(customer.getAddress());
+
+        registerUsernameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            trackEditedField("name");
+        });
+
+        registerAddressField.textProperty().addListener((observable, oldValue, newValue) -> {
+            trackEditedField("address");
+        });
+
+        registerEmailTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            trackEditedField("email");
+        });
+
+        registerPhoneTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            trackEditedField("phonenumber");
+        });
     }
     @FXML
     void onClickSwitchToHomePage(ActionEvent event) {
