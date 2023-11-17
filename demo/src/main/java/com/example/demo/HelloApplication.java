@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class HelloApplication extends Application {
 
@@ -22,11 +23,13 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fxmlFileName));
         Parent root = fxmlLoader.load();
 
-        ImageView imageView = (ImageView) fxmlLoader.getNamespace().get("logoImageView");
+        if (!Objects.equals(imageFilePath, ""))
+        {
+            ImageView imageView = (ImageView) fxmlLoader.getNamespace().get("logoImageView");
 
-        Image image = new Image("file:" + imageFilePath);
-        imageView.setImage(image);
-
+            Image image = new Image("file:" + imageFilePath);
+            imageView.setImage(image);
+        }
         Scene scene = new Scene(root, 1280, 720);
         primaryStage.setScene(scene);
         primaryStage.show();

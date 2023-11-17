@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="180.0" prefWidth="230.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.CardProductController">
+   <children>
+      <VBox layoutX="65.0" layoutY="-34.0" prefHeight="180.0" prefWidth="230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="130.0" fitWidth="229.0" pickOnBounds="true" preserveRatio="true" />
+            <HBox prefHeight="24.0" prefWidth="230.0">
+               <children>
+                  <Label fx:id="productName" prefHeight="17.0" prefWidth="152.0" text="{product.name}" />
+                  <Label text="\$" />
+                  <Label fx:id="productPrice" text="{productPrice}" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Spinner fx:id="productQuantity" prefHeight="19.0" prefWidth="143.0" />
+                  <Button mnemonicParsing="false" onAction="#onClickAddToCart" text="Add To Cart" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
