@@ -25,6 +25,9 @@ public class CustomerHomeController {
     @FXML
     private Button signOutButton;
 
+    @FXML
+    private Button viewProfileButton;
+
     private final DbHandler dbHandler = new DbHandler();
 
     @FXML
@@ -47,7 +50,20 @@ public class CustomerHomeController {
 
     @FXML
     void onClickSignOut(ActionEvent event) {
+        try {
+            HelloApplication.getInstance().switchScene("hello-view.fxml", "Assets/logo.JPG");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @FXML
+    void onClickViewProfile(ActionEvent event) {
+        try {
+            HelloApplication.getInstance().switchScene("view-profile.fxml", "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -73,28 +73,106 @@ public class DbHandler {
 	 * @param object
 	 * @return 
 	 */
-	public Boolean update(Customer object) {
-		String query = "UPDATE customer SET name=?, password=?, address=?, phoneNumber=?, email=? WHERE customerId=?";
-		// TODO Auto-generated method
+	public Boolean update(Customer object, List<String> columnsToBeUpdated) {
+		if (columnsToBeUpdated.isEmpty()) {
+			return false;
+		}
+
+		StringBuilder queryBuilder = new StringBuilder("UPDATE customer SET ");
+		List<String> setStatements = new ArrayList<>();
+
+		for (String column : columnsToBeUpdated) {
+			switch (column.toLowerCase()) {
+				case "name":
+					setStatements.add("name=?");
+					break;
+				case "password":
+					setStatements.add("password=?");
+					break;
+				case "address":
+					setStatements.add("address=?");
+					break;
+				case "phonenumber":
+					setStatements.add("phoneNumber=?");
+					break;
+				case "email":
+					setStatements.add("email=?");
+					break;
+				default:
+					return false;
+			}
+		}
+
+		queryBuilder.append(String.join(", ", setStatements));
+		queryBuilder.append(" WHERE customerId=?");
+
+		String query = queryBuilder.toString();
+
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-			 // UPDATE customers SET name=?, password=?, address=?, phoneNumber=?, email=? WHERE customerId=?
-				preparedStatement.setString(1, object.getName());
-				preparedStatement.setString(2, object.getPassword());
-				preparedStatement.setString(3, object.getAddress());
-				preparedStatement.setString(4, object.getPhoneNumber());
-				preparedStatement.setString(5, object.getEmail());
-				preparedStatement.setInt(6, object.getCustomerId());
 
-				int affectedRows = preparedStatement.executeUpdate();
+			int parameterIndex = 1;
+			for (String column : columnsToBeUpdated) {
+				switch (column.toLowerCase()) {
+					case "name":
+						preparedStatement.setString(parameterIndex++, object.getName());
+						break;
+					case "password":
+						preparedStatement.setString(parameterIndex++, object.getPassword());
+						break;
+					case "address":
+						preparedStatement.setString(parameterIndex++, object.getAddress());
+						break;
+					case "phonenumber":
+						preparedStatement.setString(parameterIndex++, object.getPhoneNumber());
+						break;
+					case "email":
+						preparedStatement.setString(parameterIndex++, object.getEmail());
+						break;
+					default:
+						return false;
+				}
+			}
 
-				return affectedRows>0;
+			preparedStatement.setInt(parameterIndex, object.getCustomerId());
+
+			int affectedRows = preparedStatement.executeUpdate();
+
+			return affectedRows > 0;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
-	 }
+	}
+
+	/**
+	 *
+	 * @param email
+	 * @return
+	 */
+	public Customer getCustomer(String email) {
+		String query = "SELECT * FROM customer WHERE email=?";
+
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
+			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			preparedStatement.setString(1, email);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				return CustomerMapper.map(resultSet);
+			} else {
+				return null;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
 	/**
 	 * 
 	 * @param email

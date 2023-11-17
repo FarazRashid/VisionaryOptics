@@ -99,6 +99,9 @@ public class Customer extends User {
 		this.customerId = customerId;
 	}
 
+	public Customer() {
+		super();
+	}
 	public void initiateFeedback() { 
 		// TODO Auto-generated method
 	 }

@@ -40,6 +40,7 @@ public class HelloController {
 
             if (dbHandler.validateLogin(email, password)) {
                 // Login successful, switch to the desired scene
+                Customer customer = dbHandler.getCustomer(email);
                 HelloApplication.getInstance().switchScene("customer-homepage.fxml", "");
             } else {
                 // Login failed, you may show an error message or take appropriate action
