@@ -45,6 +45,11 @@ public class ViewProfileController {
 
     @FXML
     void initialize() {
+        Customer customer = HelloApplication.getInstance().getCustomer();
+        usernameLabel.setText(customer.getName());
+        emailLabel.setText(customer.getEmail());
+        phoneNumberLabel.setText(customer.getPhoneNumber());
+        addressLabel.setText(customer.getAddress());
 
     }
 
