@@ -1,6 +1,9 @@
 
 package com.example.demo;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class DbHandler {
 
@@ -164,6 +167,28 @@ public class DbHandler {
 			return false;
 		}
 	 }
+
+	public List<Products> getAllProducts() {
+		String query = "SELECT * FROM products"; // Update the query according to your database schema
+
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
+			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			List<Products> productsList = new ArrayList<>();
+			while (resultSet.next()) {
+				Products product = ProductMapper.map(resultSet);
+				productsList.add(product);
+			}
+
+			return productsList;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Collections.emptyList();
+		}
+	}
 
 
 }
