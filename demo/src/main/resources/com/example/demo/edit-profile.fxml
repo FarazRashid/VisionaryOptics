@@ -21,7 +21,7 @@
             <children>
                 <Label layoutX="285.0" layoutY="103.0" onInputMethodTextChanged="#onChange" prefHeight="46.0" prefWidth="64.0" text="Edit Profile" />
                 <Label layoutX="76.0" layoutY="211.0" text="Username" />
-                <Label layoutX="75.0" layoutY="279.0" text="Password" />
+                <Label layoutX="75.0" layoutY="279.0" text="Enter Password" />
                 <PasswordField fx:id="registerPasswordTextField" layoutX="232.0" layoutY="275.0" onInputMethodTextChanged="#onChangePassword" prefHeight="25.0" prefWidth="222.0" promptText="Password" />
                 <TextField fx:id="registerUsernameTextField" layoutX="229.0" layoutY="207.0" onInputMethodTextChanged="#onChangeUsername" prefHeight="25.0" prefWidth="220.0" promptText="Username" />
                 <Button fx:id="saveButton" layoutX="83.0" layoutY="603.0" mnemonicParsing="false" onAction="#onClickSaveButton" prefHeight="29.0" prefWidth="404.0" text="Save" />
