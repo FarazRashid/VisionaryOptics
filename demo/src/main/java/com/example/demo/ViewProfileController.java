@@ -54,7 +54,11 @@ public class ViewProfileController {
     }
 
     @FXML
-    void onClickSwitchToLogin(ActionEvent event) {
-
+    void onClickSwitchToHomePage(ActionEvent event) {
+        try {
+            HelloApplication.getInstance().switchScene("customer-homepage.fxml", "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
