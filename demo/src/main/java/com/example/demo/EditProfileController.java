@@ -1,9 +1,7 @@
 package com.example.demo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -89,7 +87,7 @@ public class EditProfileController {
             registerMessageLabel.setText("Please fill in all the fields.");
             return false;
         }
-        if (!customer.getEmail().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+        if (!customer.getEmail().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             registerMessageLabel.setText("Please enter a valid email address.");
             return false;
         }
@@ -124,15 +122,18 @@ public class EditProfileController {
 
 
         DbHandler dbHandler = new DbHandler();
-        dbHandler.update(customer, editedFields);
-
-        Customer updatedCustomer = dbHandler.getCustomer(customer.getEmail());
-        HelloApplication.getInstance().setCustomer(updatedCustomer);
-
-        registerMessageLabel.setText("Success! Changes have been updated");
-
-        editedFields.clear();
-
+        if(dbHandler.update(customer, editedFields)){
+            registerMessageLabel.setText("Success! Changes have been updated");
+            Customer updatedCustomer = dbHandler.getCustomer(customer.getEmail());
+            HelloApplication.getInstance().setCustomer(updatedCustomer);
+            editedFields.clear();
+        }
+        else{
+            if(editedFields.isEmpty())
+                registerMessageLabel.setText("No changes were made!");
+            else
+                registerMessageLabel.setText("Error! Changes could not be updated");
+        }
     }
 
     @FXML
@@ -143,21 +144,13 @@ public class EditProfileController {
         registerPhoneTextField.setText(customer.getPhoneNumber());
         registerAddressField.setText(customer.getAddress());
 
-        registerUsernameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            trackEditedField("name");
-        });
+        registerUsernameTextField.textProperty().addListener((observable, oldValue, newValue) -> trackEditedField("name"));
 
-        registerAddressField.textProperty().addListener((observable, oldValue, newValue) -> {
-            trackEditedField("address");
-        });
+        registerAddressField.textProperty().addListener((observable, oldValue, newValue) -> trackEditedField("address"));
 
-        registerEmailTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            trackEditedField("email");
-        });
+        registerEmailTextField.textProperty().addListener((observable, oldValue, newValue) -> trackEditedField("email"));
 
-        registerPhoneTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            trackEditedField("phonenumber");
-        });
+        registerPhoneTextField.textProperty().addListener((observable, oldValue, newValue) -> trackEditedField("phonenumber"));
     }
     @FXML
     void onClickSwitchToHomePage(ActionEvent event) {

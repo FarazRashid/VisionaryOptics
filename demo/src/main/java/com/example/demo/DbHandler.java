@@ -70,13 +70,11 @@ public class DbHandler {
 	}
 	/**
 	 * 
-	 * @param object
-	 * @return 
+	 * @param customer : The customer to be updated
+	 * @return Boolean
 	 */
-	public Boolean update(Customer object, List<String> columnsToBeUpdated) {
-		if (columnsToBeUpdated.isEmpty()) {
-			return false;
-		}
+	public Boolean update(Customer customer, List<String> columnsToBeUpdated) {
+		if (columnsToBeUpdated.isEmpty()) return false;
 
 		StringBuilder queryBuilder = new StringBuilder("UPDATE customer SET ");
 		List<String> setStatements = new ArrayList<>();
@@ -115,26 +113,26 @@ public class DbHandler {
 			for (String column : columnsToBeUpdated) {
 				switch (column.toLowerCase()) {
 					case "name":
-						preparedStatement.setString(parameterIndex++, object.getName());
+						preparedStatement.setString(parameterIndex++, customer.getName());
 						break;
 					case "password":
-						preparedStatement.setString(parameterIndex++, object.getPassword());
+						preparedStatement.setString(parameterIndex++, customer.getPassword());
 						break;
 					case "address":
-						preparedStatement.setString(parameterIndex++, object.getAddress());
+						preparedStatement.setString(parameterIndex++, customer.getAddress());
 						break;
 					case "phonenumber":
-						preparedStatement.setString(parameterIndex++, object.getPhoneNumber());
+						preparedStatement.setString(parameterIndex++, customer.getPhoneNumber());
 						break;
 					case "email":
-						preparedStatement.setString(parameterIndex++, object.getEmail());
+						preparedStatement.setString(parameterIndex++, customer.getEmail());
 						break;
 					default:
 						return false;
 				}
 			}
 
-			preparedStatement.setInt(parameterIndex, object.getCustomerId());
+			preparedStatement.setInt(parameterIndex, customer.getCustomerId());
 
 			int affectedRows = preparedStatement.executeUpdate();
 
@@ -148,8 +146,8 @@ public class DbHandler {
 
 	/**
 	 *
-	 * @param email
-	 * @return
+	 * @param  email : The email of the user
+	 * @return Customer
 	 */
 	public Customer getCustomer(String email) {
 		String query = "SELECT * FROM customer WHERE email=?";
@@ -175,9 +173,9 @@ public class DbHandler {
 
 	/**
 	 * 
-	 * @param email
-	 * @param accountPassword
-	 * @return 
+	 * @param email	: The email entered by the user
+	 * @param accountPassword : The password entered by the user
+	 * @return Boolean
 	 */
 	public boolean validateLogin(String email, String accountPassword) {
 		String query = "SELECT * FROM customer WHERE email=? AND password=?";
@@ -200,8 +198,8 @@ public class DbHandler {
 
 	/**
 	 * 
-	 * @param customer
-	 * @return 
+	 * @param customer : The customer object to be deleted
+	 * @return Boolean
 	 */
 	public Boolean delete(Customer customer)  {
 		String query = "DELETE FROM customer WHERE CustomerId=?";
@@ -221,8 +219,8 @@ public class DbHandler {
 	 }
 	/**
 	 * 
-	 * @param customer
-	 * @return
+	 * @param customer : The customer object to be created
+	 * @return Boolean
 	 */
 	public Boolean create(Customer customer) {
 		String query = "INSERT INTO customer (name, password, address, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
