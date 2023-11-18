@@ -2,6 +2,8 @@ package com.example.demo;
 
 import com.example.demo.Cart;
 import com.example.demo.HelloApplication;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,26 +46,30 @@ public class CardCartController {
     // Reference to the Cart object
     private Cart cart;
 
+    private boolean spinnerListenerAdded = false;
+    private ChangeListener<Integer> spinnerChangeListener;
+
+
+
     public void setCart(Cart cart) {
         this.cart = HelloApplication.getInstance().getCart();
     }
+
     @FXML
     void onClickDeleteFromCart(ActionEvent event) throws IOException {
         // Get the product ID from the label
         int productId = Integer.parseInt(cartCardId.getText());
         // Call the deleteCartItem method in the Cart class
         cart.updateCartItem(currentProduct, "delete product", 0);
+        removeSpinnerListener();
         HelloApplication.getInstance().setCart(cart);
         HelloApplication.getInstance().switchScene("cart-page.fxml", "");
     }
 
     @FXML
-    void updateQuantity(ActionEvent event) throws IOException {
+    void updateQuantity(Integer newQuantity) throws IOException {
 
         int productId = Integer.parseInt(cartCardId.getText());
-
-
-        int newQuantity = cardCartSpinner.getValue();
 
         int currentQuantity = Integer.parseInt(cardCartQuantity.getText());
 
@@ -73,7 +79,7 @@ public class CardCartController {
         if (newQuantity > currentQuantity) {
             action = "increment product quantity";
         } else if (newQuantity < currentQuantity) {
-            action = "decrement product quantity";
+            action = "deduct product quantity";
         } else {
             // Quantity didn't change, handle this case if needed
             return;
@@ -81,6 +87,7 @@ public class CardCartController {
 
         // Call the updateCartItem method in the Cart class
         cart.updateCartItem(currentProduct, action, quantityChange);
+        removeSpinnerListener();
         HelloApplication.getInstance().setCart(cart);
         HelloApplication.getInstance().switchScene("cart-page.fxml", "");
     }
@@ -97,7 +104,29 @@ public class CardCartController {
         // Initialize the Spinner with a value factory
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, products.getQuantity());
         cardCartSpinner.setValueFactory(valueFactory);
+
+        // Add a listener to the valueProperty of the Spinner only if it hasn't been added before
+        if (!spinnerListenerAdded) {
+            spinnerChangeListener = (observableValue, integer, t1) -> {
+                int currentValue = cardCartSpinner.getValue();
+                try {
+                    updateQuantity(currentValue);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            };
+
+            cardCartSpinner.valueProperty().addListener(spinnerChangeListener);
+            spinnerListenerAdded = true;
+        }
+    }
+
+    private void removeSpinnerListener() {
+        if (spinnerListenerAdded && spinnerChangeListener != null) {
+            cardCartSpinner.valueProperty().removeListener(spinnerChangeListener);
+            spinnerChangeListener = null;
+            spinnerListenerAdded = false;
+        }
     }
 }
-
 
