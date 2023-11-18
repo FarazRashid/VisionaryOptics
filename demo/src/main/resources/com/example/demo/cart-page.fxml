@@ -44,6 +44,7 @@
       <Label layoutX="819.0" layoutY="670.0" text="Total Price" />
       <Label fx:id="cartTotalAmount" layoutX="902.0" layoutY="670.0" text="{cartAmount}" />
       <Button fx:id="checkOutButton" layoutX="1011.0" layoutY="666.0" mnemonicParsing="false" onAction="#onClickCheckOut" text="Proceed To Checkout" />
+      <Button fx:id="goBackHomeButton" layoutX="20.0" layoutY="553.0" mnemonicParsing="false" onAction="#onClickGoBackHome" prefHeight="25.0" prefWidth="113.0" text="Go Back To Home" />
     </children>
 
 </AnchorPane>

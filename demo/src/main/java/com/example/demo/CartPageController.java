@@ -13,6 +13,7 @@ import java.util.List;
 
 public class CartPageController {
 
+    public Button goBackHomeButton;
     @FXML
     private Label cartTotalAmount;
 
@@ -82,5 +83,13 @@ public class CartPageController {
     // Add a method to set the current cart
     public void setCurrentCart() {
         this.currentCart = HelloApplication.getInstance().getCart();
+    }
+
+    public void onClickGoBackHome(ActionEvent actionEvent) {
+        try {
+            HelloApplication.getInstance().switchScene("customer-homepage.fxml", "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
