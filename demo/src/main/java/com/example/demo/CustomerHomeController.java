@@ -21,7 +21,11 @@ import java.util.logging.Level;
 
 public class CustomerHomeController {
 
+
+    public Button goToCart;
+
     private static final Logger logger = Logger.getLogger(CustomerHomeController.class.getName());
+
 
     @FXML
     private Label customerHomePageUserName;
@@ -98,6 +102,15 @@ public class CustomerHomeController {
         }
     }
 
+
+    public void onClickGoToCart(ActionEvent actionEvent) {
+        try {
+            HelloApplication.getInstance().switchScene("cart-page.fxml", "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     void onClickSelectCategory(ActionEvent event) {
         // Get the selected category from the combo box
@@ -144,6 +157,7 @@ public class CustomerHomeController {
         // Set the VBox as the content of the ScrollPane
         scrollPane.setContent(rowsVBox);
     }
+
 
 
 }
