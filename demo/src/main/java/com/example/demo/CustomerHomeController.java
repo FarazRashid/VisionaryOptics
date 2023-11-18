@@ -16,8 +16,12 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class CustomerHomeController {
+
+    private static final Logger logger = Logger.getLogger(CustomerHomeController.class.getName());
 
     @FXML
     private Label customerHomePageUserName;
@@ -68,7 +72,7 @@ public class CustomerHomeController {
 
                 rowsVBox.getChildren().add(rowHBox);
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.log(Level.SEVERE, "Failed to load card-product.fxml.", e);
             }
         }
 
@@ -81,7 +85,7 @@ public class CustomerHomeController {
         try {
             HelloApplication.getInstance().switchScene("hello-view.fxml", "Assets/logo.JPG");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Failed to switch to hello-view.", e);
         }
     }
 
@@ -90,7 +94,7 @@ public class CustomerHomeController {
         try {
             HelloApplication.getInstance().switchScene("view-profile.fxml", "");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Failed to switch to view-profile.", e);
         }
     }
 
@@ -133,7 +137,7 @@ public class CustomerHomeController {
 
                 rowsVBox.getChildren().add(rowHBox);
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.log(Level.SEVERE, "Failed to load card-product.fxml.", e);
             }
         }
 
