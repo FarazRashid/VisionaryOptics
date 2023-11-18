@@ -41,6 +41,7 @@ public class HelloController {
             if (dbHandler.validateLogin(email, password)) {
                 // Login successful, switch to the desired scene
                 Customer customer = dbHandler.getCustomer(email);
+                Cart cart = dbHandler.getCart(customer);
                 HelloApplication.getInstance().setCustomer(customer);
                 HelloApplication.getInstance().switchScene("customer-homepage.fxml", "");
             } else {

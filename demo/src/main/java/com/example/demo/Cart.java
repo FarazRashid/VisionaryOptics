@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class Cart {
@@ -81,23 +82,108 @@ public class Cart {
 	 * 
 	 * @return 
 	 */
-	public Cart requestCartContents() {
-		// TODO Auto-generated method
-		return null;
-	 }
+	public Cart requestCartContents(Customer customer) {
+		DbHandler dbHandler = new DbHandler();
+		Cart cart = dbHandler.getCart(customer);
+		this.setProducts(cart.getProducts());
+		this.setTotalAmount(cart.getTotalAmount());
+		this.setCartId(cart.getCartId());
+		return this;
+	}
+
 	/**
 	 * 
-	 * @param item 
-	 * @param quantity 
+
 	 */
-	public void updateCartItem(Integer item, Integer quantity) { 
-		// TODO Auto-generated method
-	 }
+	public void updateCartItem(Products product, String operation, Integer quantity) {
+		// TODO: Implement the logic to update the cart item based on the specified operation
+
+		switch (operation.toLowerCase()) {
+			case "insert product":
+				// TODO: Implement logic to insert the product into the cart
+				if (!products.contains(product)) {
+					DbHandler dbHandler = new DbHandler();
+					dbHandler.insertCartItem(cartId, product.getProductId(), quantity);
+					recalculateTotal();
+				}
+				break;
+
+			case "increment product quantity":
+				// TODO: Implement logic to increment the quantity of the product in the cart
+				for (Products existingProduct : products) {
+					if (existingProduct.getProductId().equals(product.getProductId())) {
+						existingProduct.setQuantity(existingProduct.getQuantity() + quantity);
+						DbHandler dbHandler = new DbHandler();
+						dbHandler.incrementCartItemQuantity(cartId, product.getProductId(), quantity);
+						recalculateTotal();
+						return;
+					}
+				}
+				break;
+
+			case "delete product":
+				// TODO: Implement logic to delete the product from the cart
+				Iterator<Products> iterator = products.iterator();
+				while (iterator.hasNext()) {
+					Products existingProduct = iterator.next();
+					if (existingProduct.getProductId().equals(product.getProductId())) {
+						// Remove the product from the cart
+						iterator.remove();
+						DbHandler dbHandler = new DbHandler();
+						dbHandler.deleteCartItem(cartId, product.getProductId(), product.getQuantity());
+						recalculateTotal();
+
+						return;
+					}
+				}
+				break;
+
+			case "deduct product quantity":
+				// TODO: Implement logic to deduct the quantity of the product in the cart
+				Iterator<Products> iterator2 = products.iterator();
+				while (iterator2.hasNext()) {
+					Products existingProduct = iterator2.next();
+					if (existingProduct.getProductId().equals(product.getProductId())) {
+						// Deduct the quantity from the cart
+						int newQuantity = existingProduct.getQuantity() - quantity;
+						if (newQuantity <= 0) {
+							// If the new quantity is 0 or less, remove the product completely
+							iterator2.remove();
+							DbHandler dbHandler = new DbHandler();
+							dbHandler.deleteCartItem(cartId, product.getProductId(), product.getQuantity());
+						} else {
+							existingProduct.setQuantity(newQuantity);
+							DbHandler dbHandler = new DbHandler();
+							dbHandler.deductCartItemQuantity(cartId, product.getProductId(), quantity);
+						}
+
+						// You may also want to adjust the total amount here
+						recalculateTotal();
+
+						return; // Exit the method after updating
+					}
+				}
+				break;
+
+
+			default:
+				// Handle unsupported operations or provide an error message
+				break;
+		}
+	}
+
 	/**
 	 * 
 	 */
-	public void recalculcateTotal() { 
-		// TODO Auto-generated method
-	 } 
+	public int recalculateTotal() {
+
+		int total = 0;
+		for (Products product : products) {
+			total += product.getPrice() * product.getQuantity();
+		}
+
+		setTotalAmount(total); // Update the totalAmount in the Cart object
+		return total;
+	}
 
 }

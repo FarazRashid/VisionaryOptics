@@ -84,4 +84,10 @@ SET totalAmount = (
 )
 WHERE cartId = 1;
 
+ALTER TABLE CartProduct
+ADD COLUMN quantity INT NOT NULL DEFAULT 1;
+
+UPDATE CartProduct
+SET quantity = 1
+WHERE cartId = 1;
 
