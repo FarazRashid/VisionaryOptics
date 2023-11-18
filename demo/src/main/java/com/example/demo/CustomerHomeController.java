@@ -21,7 +21,8 @@ import java.util.logging.Level;
 
 public class CustomerHomeController {
 
-
+    @FXML
+    private Button CustomerSupportButton;
     public Button goToCart;
 
     private static final Logger logger = Logger.getLogger(CustomerHomeController.class.getName());
@@ -156,6 +157,15 @@ public class CustomerHomeController {
 
         // Set the VBox as the content of the ScrollPane
         scrollPane.setContent(rowsVBox);
+    }
+
+    @FXML
+    void onClickGoToCustomerSupport(ActionEvent event) {
+        try {
+            HelloApplication.getInstance().switchScene("customer-support.fxml", "");
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Failed to switch to receive-customer-support.", e);
+        }
     }
 
 

@@ -35,5 +35,6 @@
       <Button fx:id="goToCart" layoutX="907.0" layoutY="28.0" mnemonicParsing="false" onAction="#onClickGoToCart" prefHeight="25.0" prefWidth="77.0" text="Button" />
       <ComboBox fx:id="categorySelect" layoutX="255.0" layoutY="23.0" onAction="#onClickSelectCategory" prefWidth="150.0" promptText="All Categories" />
       <Label layoutX="149.0" layoutY="24.0" prefHeight="22.0" prefWidth="106.0" text="Select Category" />
+      <Button fx:id="CustomerSupportButton" layoutX="18.0" layoutY="550.0" mnemonicParsing="false" onAction="#onClickGoToCustomerSupport" prefHeight="25.0" prefWidth="113.0" text="Chat with Us!" />
    </children>
 </AnchorPane>
