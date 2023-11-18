@@ -13,9 +13,17 @@ import java.util.Objects;
 
 public class HelloApplication extends Application {
 
+    private static Customer customer;
     private static HelloApplication instance;
     private Stage primaryStage;
 
+
+    public Customer getCustomer() {
+        return customer;
+    }
+    public void setCustomer(Customer customer) {
+        HelloApplication.customer = customer;
+    }
     public void switchScene(String fxmlFileName, String imageFilePath) throws IOException {
         if (primaryStage == null) {
             throw new IllegalStateException("Primary stage is not initialized.");

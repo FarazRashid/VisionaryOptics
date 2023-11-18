@@ -126,5 +126,12 @@ public class User {
 		 this.phoneNumber = phoneNumber;
 		 this.address = address;
 	 }
+	 User(){
+		 this.name = "";
+		 this.password = "";
+		 this.email = "";
+		 this.phoneNumber = "";
+		 this.address = "";
+	 }
 
 }
