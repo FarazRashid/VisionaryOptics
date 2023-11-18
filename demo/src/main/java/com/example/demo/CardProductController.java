@@ -28,6 +28,8 @@ public class CardProductController {
     @FXML
     void onClickAddToCart(ActionEvent event) {
         // You can replace this with actual "Add to Cart" logic
+
+        productName.setText("clicked");
     }
 
 }
