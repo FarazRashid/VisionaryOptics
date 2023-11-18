@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
 
 import java.io.IOException;
 
@@ -105,4 +106,6 @@ public class Register {
         return textField.getText().isBlank();
     }
 
+    public void onChange(InputMethodEvent inputMethodEvent) {
+    }
 }

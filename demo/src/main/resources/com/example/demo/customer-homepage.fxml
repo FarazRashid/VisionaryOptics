@@ -31,5 +31,6 @@
       <Label fx:id="customerHomePageUserName" layoutX="69.0" layoutY="106.0" prefHeight="17.0" prefWidth="77.0" text="{name}" />
       <Button fx:id="signOutButton" layoutX="20.0" layoutY="636.0" mnemonicParsing="false" onAction="#onClickSignOut" prefHeight="25.0" prefWidth="113.0" text="Sign Out" />
       <Button fx:id="viewProfileButton" layoutX="18.0" layoutY="594.0" mnemonicParsing="false" onAction="#onClickViewProfile" prefHeight="25.0" prefWidth="113.0" text="View Profile" />
+      <Button fx:id="goToCart" layoutX="907.0" layoutY="28.0" mnemonicParsing="false" onAction="#onClickGoToCart" prefHeight="25.0" prefWidth="77.0" text="Button" />
    </children>
 </AnchorPane>

@@ -271,8 +271,8 @@ public class DbHandler {
 	}
 
 
-	public  Cart getCart(Customer customer) {
-		String query = "SELECT c.cartId, c.totalAmount, p.* FROM cart c "
+	public Cart getCart(Customer customer) {
+		String query = "SELECT c.cartId, c.totalAmount, cp.quantity, p.* FROM cart c "
 				+ "JOIN customercart cc ON c.cartId = cc.cartId "
 				+ "JOIN cartproduct cp ON c.cartId = cp.cartId "
 				+ "JOIN products p ON cp.productId = p.productId "
@@ -294,6 +294,7 @@ public class DbHandler {
 				}
 
 				Products product = ProductMapper.map(resultSet);
+				product.setQuantity(resultSet.getInt("quantity")); // Set quantity from cartproduct table
 				cart.getProducts().add(product);
 			}
 
@@ -304,6 +305,7 @@ public class DbHandler {
 			return null;
 		}
 	}
+
 
 
 	public boolean insertCartItem(int cartId, int productId, int cartQuantity) {

@@ -13,6 +13,7 @@ import java.util.List;
 
 public class CustomerHomeController {
 
+    public Button goToCart;
     @FXML
     private Label customerHomePageUserName;
 
@@ -66,4 +67,11 @@ public class CustomerHomeController {
         }
     }
 
+    public void onClickGoToCart(ActionEvent actionEvent) {
+        try {
+            HelloApplication.getInstance().switchScene("cart-page.fxml", "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -43,6 +43,7 @@ public class HelloController {
                 Customer customer = dbHandler.getCustomer(email);
                 Cart cart = dbHandler.getCart(customer);
                 HelloApplication.getInstance().setCustomer(customer);
+                HelloApplication.getInstance().setCart(cart);
                 HelloApplication.getInstance().switchScene("customer-homepage.fxml", "");
             } else {
                 // Login failed, you may show an error message or take appropriate action

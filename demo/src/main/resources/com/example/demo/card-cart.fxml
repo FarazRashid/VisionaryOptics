@@ -18,7 +18,7 @@
             <Label fx:id="cardCartName" layoutX="10.0" layoutY="10.0" text="{cardCart.name}" />
             <Label fx:id="cardCartCategory" layoutX="272.0" layoutY="10.0" text="{cardCart.category}" />
             <Label fx:id="cardCartQuantity" layoutX="357.0" layoutY="10.0" text="{cardCart.quantity}" />
-            <Spinner fx:id="cardCartSpinner" onInputMethodTextChanged="#updateQuantity" prefHeight="25.0" prefWidth="74.0" />
+            <Spinner fx:id="cardCartSpinner"  prefHeight="25.0" prefWidth="74.0" />
             <Label fx:id="cardCartPrice" layoutX="458.0" layoutY="10.0" text="{cardCart.price}" />
             <Button fx:id="deleteFromCart" mnemonicParsing="false" onAction="#onClickDeleteFromCart" text="Delete" />
 

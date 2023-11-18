@@ -1,12 +1,17 @@
 package com.example.demo;
 
+import com.example.demo.Cart;
+import com.example.demo.HelloApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
+
+import java.io.IOException;
 
 public class CardCartController {
 
@@ -34,14 +39,65 @@ public class CardCartController {
     @FXML
     private Button deleteFromCart;
 
-    @FXML
-    void onClickDeleteFromCart(ActionEvent event) {
+    private Products currentProduct;
 
+    // Reference to the Cart object
+    private Cart cart;
+
+    public void setCart(Cart cart) {
+        this.cart = HelloApplication.getInstance().getCart();
+    }
+    @FXML
+    void onClickDeleteFromCart(ActionEvent event) throws IOException {
+        // Get the product ID from the label
+        int productId = Integer.parseInt(cartCardId.getText());
+        // Call the deleteCartItem method in the Cart class
+        cart.updateCartItem(currentProduct, "delete product", 0);
+        HelloApplication.getInstance().setCart(cart);
+        HelloApplication.getInstance().switchScene("cart-page.fxml", "");
     }
 
     @FXML
-    void updateQuantity(InputMethodEvent event) {
+    void updateQuantity(ActionEvent event) throws IOException {
 
+        int productId = Integer.parseInt(cartCardId.getText());
+
+
+        int newQuantity = cardCartSpinner.getValue();
+
+        int currentQuantity = Integer.parseInt(cardCartQuantity.getText());
+
+        // Determine if it's an increment or decrement
+        String action;
+        int quantityChange = Math.abs(newQuantity - currentQuantity);
+        if (newQuantity > currentQuantity) {
+            action = "increment product quantity";
+        } else if (newQuantity < currentQuantity) {
+            action = "decrement product quantity";
+        } else {
+            // Quantity didn't change, handle this case if needed
+            return;
+        }
+
+        // Call the updateCartItem method in the Cart class
+        cart.updateCartItem(currentProduct, action, quantityChange);
+        HelloApplication.getInstance().setCart(cart);
+        HelloApplication.getInstance().switchScene("cart-page.fxml", "");
     }
 
+    public void initData(Products products) {
+        this.cart = HelloApplication.getInstance().getCart();
+        currentProduct = products;
+        cardCartName.setText(products.getDescription());
+        cardCartPrice.setText("$" + String.valueOf(products.getPrice()));
+        cardCartCategory.setText(products.getCategory());
+        cardCartQuantity.setText(String.valueOf(products.getQuantity()));
+        cartCardId.setText(String.valueOf(products.getProductId()));
+
+        // Initialize the Spinner with a value factory
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, products.getQuantity());
+        cardCartSpinner.setValueFactory(valueFactory);
+    }
 }
+
+

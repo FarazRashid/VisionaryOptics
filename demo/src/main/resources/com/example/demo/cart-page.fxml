@@ -21,7 +21,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="544.0" prefWidth="841.0">
                <children>
-                  <GridPane layoutX="2.0" layoutY="8.0" prefHeight="544.0" prefWidth="756.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="cartGrid" layoutX="2.0" layoutY="8.0" prefHeight="544.0" prefWidth="756.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
