@@ -1,5 +1,7 @@
 
 package com.example.demo;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +22,13 @@ public class DbHandler {
 	 */
 	private String password;
 
-	/**
+	private static final Logger logger;
+
+    static {
+        logger = Logger.getLogger(DbHandler.class.getName());
+    }
+
+    /**
 	 *
 	 */
 	public DbHandler() {
@@ -139,7 +147,7 @@ public class DbHandler {
 			return affectedRows > 0;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE,"Error while Updating a Customer : ", e);
 			return false;
 		}
 	}
@@ -165,7 +173,7 @@ public class DbHandler {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE,"Error while Fetching a Customer : ", e);
 			return null;
 		}
 
@@ -186,11 +194,11 @@ public class DbHandler {
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 
-			// The result set is not empty
+            /* The result set is not empty */
 			return resultSet.next();
 		} catch (SQLException e) {
-			e.printStackTrace();
-			// Return false in case of any exception
+			logger.log(Level.SEVERE,"Error while Validating Login : ", e);
+            /* Return false in case of any exception */
 			return false;
 		}
 	}
@@ -213,7 +221,7 @@ public class DbHandler {
 
 			return affectedRows>0;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE,"Error while Deleting a Customer : ", e);
 			return false;
 		}
 	 }
@@ -239,7 +247,7 @@ public class DbHandler {
 			return affectedRows > 0;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE,"Error while Inserting a Customer : ", e);
 			return false;
 		}
 	 }
@@ -261,7 +269,7 @@ public class DbHandler {
 			return productsList;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE,"Error while Fetching all Products : ", e);
 			return Collections.emptyList();
 		}
 	}

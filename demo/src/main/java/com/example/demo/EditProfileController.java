@@ -12,8 +12,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EditProfileController {
+
+    private static final Logger logger = Logger.getLogger(EditProfileController.class.getName());
 
     @FXML
     private Button goBackToHomePageButton;
@@ -157,7 +161,7 @@ public class EditProfileController {
         try {
             HelloApplication.getInstance().switchScene("customer-homepage.fxml", "");
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Failed to switch to customer-homepage.", e);
         }
     }
 

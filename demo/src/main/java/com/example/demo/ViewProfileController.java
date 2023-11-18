@@ -2,16 +2,18 @@ package com.example.demo;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputMethodEvent;
 
 import java.io.IOException;
-import java.util.List;
+
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class ViewProfileController {
+
+    private static final Logger logger = Logger.getLogger(ViewProfileController.class.getName());
 
     @FXML
     private Label addressLabel;
@@ -39,7 +41,7 @@ public class ViewProfileController {
         try {
             HelloApplication.getInstance().switchScene("edit-profile.fxml", "");
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Failed to switch to edit-profile.", e);
         }
     }
 
@@ -58,7 +60,7 @@ public class ViewProfileController {
         try {
             HelloApplication.getInstance().switchScene("customer-homepage.fxml", "");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Failed to switch to customer-homepage.", e);
         }
     }
 }
