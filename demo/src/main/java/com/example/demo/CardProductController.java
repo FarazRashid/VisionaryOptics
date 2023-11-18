@@ -35,6 +35,7 @@ public class CardProductController {
     @FXML
     void onClickAddToCart(ActionEvent event) {
 
+
         List<Products> products = cart.getProducts();
         if(products.contains(product)){
             cart.updateCartItem(product, "insert product", 1);
@@ -47,6 +48,7 @@ public class CardProductController {
             return;
         }
 
+   
     }
 
 }

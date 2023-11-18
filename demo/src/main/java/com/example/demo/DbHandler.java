@@ -1,5 +1,7 @@
 
 package com.example.demo;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +22,13 @@ public class DbHandler {
 	 */
 	private String password;
 
-	/**
+	private static final Logger logger;
+
+    static {
+        logger = Logger.getLogger(DbHandler.class.getName());
+    }
+
+    /**
 	 *
 	 */
 	public DbHandler() {
@@ -74,14 +82,9 @@ public class DbHandler {
 		this.password = password;
 	}
 
-	/**
-	 * @param object
-	 * @return
-	 */
-	public Boolean update(Customer object, List<String> columnsToBeUpdated) {
-		if (columnsToBeUpdated.isEmpty()) {
-			return false;
-		}
+
+	public Boolean update(Customer customer, List<String> columnsToBeUpdated) {
+		if (columnsToBeUpdated.isEmpty()) return false;
 
 		StringBuilder queryBuilder = new StringBuilder("UPDATE customer SET ");
 		List<String> setStatements = new ArrayList<>();
@@ -120,41 +123,38 @@ public class DbHandler {
 			for (String column : columnsToBeUpdated) {
 				switch (column.toLowerCase()) {
 					case "name":
-						preparedStatement.setString(parameterIndex++, object.getName());
+						preparedStatement.setString(parameterIndex++, customer.getName());
 						break;
 					case "password":
-						preparedStatement.setString(parameterIndex++, object.getPassword());
+						preparedStatement.setString(parameterIndex++, customer.getPassword());
 						break;
 					case "address":
-						preparedStatement.setString(parameterIndex++, object.getAddress());
+						preparedStatement.setString(parameterIndex++, customer.getAddress());
 						break;
 					case "phonenumber":
-						preparedStatement.setString(parameterIndex++, object.getPhoneNumber());
+						preparedStatement.setString(parameterIndex++, customer.getPhoneNumber());
 						break;
 					case "email":
-						preparedStatement.setString(parameterIndex++, object.getEmail());
+						preparedStatement.setString(parameterIndex++, customer.getEmail());
 						break;
 					default:
 						return false;
 				}
 			}
 
-			preparedStatement.setInt(parameterIndex, object.getCustomerId());
+			preparedStatement.setInt(parameterIndex, customer.getCustomerId());
 
 			int affectedRows = preparedStatement.executeUpdate();
 
 			return affectedRows > 0;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE,"Error while Updating a Customer : ", e);
 			return false;
 		}
 	}
 
-	/**
-	 * @param email
-	 * @return
-	 */
+
 	public Customer getCustomer(String email) {
 		String query = "SELECT * FROM customer WHERE email=?";
 
@@ -171,17 +171,13 @@ public class DbHandler {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE,"Error while Fetching a Customer : ", e);
 			return null;
 		}
 
 	}
 
-	/**
-	 * @param email
-	 * @param accountPassword
-	 * @return
-	 */
+
 	public boolean validateLogin(String email, String accountPassword) {
 		String query = "SELECT * FROM customer WHERE email=? AND password=?";
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
@@ -191,20 +187,16 @@ public class DbHandler {
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 
-			// The result set is not empty
+            /* The result set is not empty */
 			return resultSet.next();
 		} catch (SQLException e) {
-			e.printStackTrace();
-			// Return false in case of any exception
+			logger.log(Level.SEVERE,"Error while Validating Login : ", e);
+            /* Return false in case of any exception */
 			return false;
 		}
 	}
 
 
-	/**
-	 * @param customer
-	 * @return
-	 */
 	public Boolean delete(Customer customer) {
 		String query = "DELETE FROM customer WHERE CustomerId=?";
 		// TODO Auto-generated method
@@ -217,15 +209,12 @@ public class DbHandler {
 
 			return affectedRows > 0;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE,"Error while Deleting a Customer : ", e);
 			return false;
 		}
 	}
 
-	/**
-	 * @param customer
-	 * @return
-	 */
+
 	public Boolean create(Customer customer) {
 		String query = "INSERT INTO customer (name, password, address, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
 
@@ -243,7 +232,7 @@ public class DbHandler {
 			return affectedRows > 0;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE,"Error while Inserting a Customer : ", e);
 			return false;
 		}
 	}
@@ -265,7 +254,7 @@ public class DbHandler {
 			return productsList;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE,"Error while Fetching all Products : ", e);
 			return Collections.emptyList();
 		}
 	}
