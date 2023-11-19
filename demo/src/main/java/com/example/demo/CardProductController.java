@@ -10,7 +10,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import java.io.IOException;
 import java.util.List;
 
-public class CardProductController {
+public class CardProductController  {
 
     public Button deleteFromCart;
     @FXML
@@ -25,6 +25,8 @@ public class CardProductController {
     private Products product;
 
     private Cart cart;
+
+
 
 
     public void initData(Products product) {

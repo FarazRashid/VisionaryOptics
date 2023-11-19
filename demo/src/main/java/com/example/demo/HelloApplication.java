@@ -19,7 +19,6 @@ public class HelloApplication extends Application {
     private static HelloApplication instance;
     private Stage primaryStage;
 
-
     public Customer getCustomer() {
         return customer;
     }
@@ -66,4 +65,6 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+
 }

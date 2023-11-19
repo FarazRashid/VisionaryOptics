@@ -7,13 +7,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.List;
 
-public class CartPageController {
+public class CartPageController  {
 
-    public Button goBackHomeButton;
+    @FXML
+    public GridPane cartGrid;
     @FXML
     private Label cartTotalAmount;
 
@@ -30,10 +32,11 @@ public class CartPageController {
     private Button viewProfileButton;
 
     @FXML
-    private GridPane cartGrid;
+    private ScrollPane cartScrollPane;
 
     private final DbHandler dbHandler = new DbHandler();
     private Cart currentCart;
+
 
     @FXML
     void initialize() {
@@ -41,11 +44,16 @@ public class CartPageController {
         setCurrentCart();
         List<Products> cartItems = currentCart.getProducts();
 
+        // Create a VBox to hold rows
+        VBox rowsVBox = new VBox();
+        rowsVBox.setSpacing(10); // Adjust the spacing as needed
+
         // Dynamically create and populate the card for each cart item
         for (int i = 0; i < cartItems.size(); i++) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("card-cart.fxml"));
-                cartGrid.add(loader.load(), 0, i);
+                rowsVBox.getChildren().add(loader.load());
+
                 CardCartController controller = loader.getController();
                 controller.initData(cartItems.get(i));
             } catch (IOException e) {
@@ -53,8 +61,11 @@ public class CartPageController {
             }
         }
 
+        // Set the VBox as the content of the ScrollPane
+        cartScrollPane.setContent(rowsVBox);
+
         // Update the total amount label
-        cartTotalAmount.setText("$"+String.valueOf(currentCart.getTotalAmount()));
+        cartTotalAmount.setText("$" + String.valueOf(currentCart.getTotalAmount()));
     }
 
     @FXML
