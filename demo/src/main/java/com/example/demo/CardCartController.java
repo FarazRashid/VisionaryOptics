@@ -96,7 +96,7 @@ public class CardCartController {
         this.cart = HelloApplication.getInstance().getCart();
         currentProduct = products;
         cardCartName.setText(products.getDescription());
-        cardCartPrice.setText("$" + String.valueOf(products.getPrice()));
+        cardCartPrice.setText("$" + String.valueOf(products.getPrice()* products.getQuantity()));
         cardCartCategory.setText(products.getCategory());
         cardCartQuantity.setText(String.valueOf(products.getQuantity()));
         cartCardId.setText(String.valueOf(products.getProductId()));

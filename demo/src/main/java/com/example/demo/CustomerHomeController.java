@@ -48,6 +48,7 @@ public class CustomerHomeController {
 
     private final DbHandler dbHandler = new DbHandler();
 
+
     @FXML
     void initialize() {
         // Fetch products from the database

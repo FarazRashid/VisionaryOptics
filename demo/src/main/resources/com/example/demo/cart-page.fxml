@@ -17,7 +17,7 @@
         <Label fx:id="customerHomePageUserName" layoutX="69.0" layoutY="106.0" prefHeight="17.0" prefWidth="77.0" text="{name}" />
         <Button fx:id="signOutButton" layoutX="20.0" layoutY="636.0" mnemonicParsing="false" onAction="#onClickSignOut" prefHeight="25.0" prefWidth="113.0" text="Sign Out" />
         <Button fx:id="viewProfileButton" layoutX="18.0" layoutY="594.0" mnemonicParsing="false" onAction="#onClickViewProfile" prefHeight="25.0" prefWidth="113.0" text="View Profile" />
-      <ScrollPane layoutX="293.0" layoutY="101.0" prefHeight="554.0" prefWidth="847.0">
+      <ScrollPane fx:id="cartScrollPane" layoutX="293.0" layoutY="101.0" prefHeight="554.0" prefWidth="847.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="544.0" prefWidth="841.0">
                <children>
@@ -44,6 +44,7 @@
       <Label layoutX="819.0" layoutY="670.0" text="Total Price" />
       <Label fx:id="cartTotalAmount" layoutX="902.0" layoutY="670.0" text="{cartAmount}" />
       <Button fx:id="checkOutButton" layoutX="1011.0" layoutY="666.0" mnemonicParsing="false" onAction="#onClickCheckOut" text="Proceed To Checkout" />
+      <Button fx:id="goBackHomeButton" layoutX="20.0" layoutY="553.0" mnemonicParsing="false" onAction="#onClickGoBackHome" prefHeight="25.0" prefWidth="113.0" text="Go Back To Home" />
     </children>
 
 </AnchorPane>
