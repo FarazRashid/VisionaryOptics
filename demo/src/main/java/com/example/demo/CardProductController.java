@@ -43,7 +43,10 @@ public class CardProductController  {
         int quantityToAdd = productQuantity.getValue();
 
         List<Products> products = cart.getProducts();
-        if (products.contains(product)) {
+        boolean productExistsInCart = products.stream()
+                .anyMatch(p -> p.getDescription().equals(product.getDescription()));
+
+        if (productExistsInCart) {
             // Product is already in the cart, update the quantity
             cart.updateCartItem(product, "increment product quantity", quantityToAdd);
         } else {
