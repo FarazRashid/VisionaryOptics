@@ -104,6 +104,7 @@ public class Cart {
 				if (!products.contains(product)) {
 					DbHandler dbHandler = new DbHandler();
 					dbHandler.insertCartItem(cartId, product.getProductId(), quantity);
+					products.add(product);
 					recalculateTotal();
 				}
 				break;
