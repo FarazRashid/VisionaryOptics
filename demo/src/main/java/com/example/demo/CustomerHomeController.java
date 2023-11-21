@@ -52,6 +52,8 @@ public class CustomerHomeController {
     @FXML
     void initialize() {
         // Fetch products from the database
+        Customer customer= HelloApplication.getInstance().getCustomer();
+        customerHomePageUserName.setText(customer.getName());
         List<Products> products = dbHandler.getAllProducts();
 
         ObservableList<String> categories = FXCollections.observableArrayList(products.stream().map(Products::getType).distinct().toList());

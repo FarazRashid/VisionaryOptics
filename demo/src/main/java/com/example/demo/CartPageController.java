@@ -41,6 +41,8 @@ public class CartPageController  {
     @FXML
     void initialize() {
         // Fetch cart items from the database
+        Customer customer= HelloApplication.getInstance().getCustomer();
+        customerHomePageUserName.setText(customer.getName());
         setCurrentCart();
         List<Products> cartItems = currentCart.getProducts();
 
