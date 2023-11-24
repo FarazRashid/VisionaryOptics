@@ -159,11 +159,15 @@ public class Customer extends User {
 		// TODO Auto-generated method
 	 }
 
-	public String getPassword() {
-		return password;
-	}
+	public Cart updateCart(){
 
-	public void setPassword(String password) {
-		this.password = password;
+		DbHandler Handler = new DbHandler();
+
+		this.cart=Handler.insertNewCart();
+
+		Handler.updateCustomerCart(this.getCustomerId(),this.cart.getCartId());
+
+		return this.cart;
+
 	}
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.CheckoutPage">
+
+    <children>
+        <ImageView fitHeight="106.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" />
+        <Label layoutX="14.0" layoutY="36.0" prefHeight="17.0" prefWidth="55.0" text="Welcome" />
+        <Label fx:id="customerHomePageUserName" layoutX="82.0" layoutY="36.0" prefHeight="17.0" prefWidth="77.0" text="{name}" />
+        <Button fx:id="signOutButton" layoutX="20.0" layoutY="636.0" mnemonicParsing="false" onAction="#onClickSignOut" prefHeight="25.0" prefWidth="113.0" text="Sign Out" />
+        <Button fx:id="viewProfileButton" layoutX="18.0" layoutY="594.0" mnemonicParsing="false" onAction="#onClickViewProfile" prefHeight="25.0" prefWidth="113.0" text="View Profile" />
+
+        <!-- Address Section -->
+        <Label layoutX="20.0" layoutY="160.0" prefHeight="17.0" prefWidth="100.0" text="Enter Address:" />
+        <TextField fx:id="addressTextField" layoutX="20.0" layoutY="180.0" prefWidth="300.0" />
+
+
+        <!-- Cool UI/UX for Payment Type -->
+        <AnchorPane layoutX="20.0" layoutY="320.0">
+            <!-- Add cool UI/UX elements based on selected payment type -->
+            <!-- For example, show a credit card image for Credit Card payment, or a cash icon for Cash payment -->
+        </AnchorPane>
+
+        <Button fx:id="placeOrderButton" layoutX="20.0" layoutY="400.0" mnemonicParsing="false" onAction="#onClickPlaceOrder" prefHeight="25.0" prefWidth="113.0" text="Place Order" />
+        <Button fx:id="goBackHomeButton" layoutX="20.0" layoutY="440.0" mnemonicParsing="false" onAction="#onClickGoBackHome" prefHeight="25.0" prefWidth="113.0" text="Go Back To Home" />
+        <ComboBox fx:id="categorySelect" layoutX="20.0" layoutY="238.0" onAction="#onClickSelectPaymentType" prefHeight="25.0" prefWidth="175.0" promptText="Select Payment Method" />
+
+
+        <VBox fx:id="creditCardPayment" layoutX="27.0" layoutY="283.0" spacing="10" visible="false">
+            <HBox spacing="10">
+                <Text layoutX="25.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Credit Card Number" />
+                <TextField fx:id="creditCardNumber" layoutX="195.0" layoutY="291.0" />
+            </HBox>
+            <HBox spacing="57">
+                <Text layoutX="25.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Expiry Date" />
+                <TextField fx:id="expiryDateNumber" layoutX="195.0" layoutY="327.0" />
+            </HBox>
+            <HBox spacing="95">
+                <Text layoutX="25.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter CVV" />
+                <TextField fx:id="cardCVV" layoutX="195.0" layoutY="367.0" />
+            </HBox>
+        </VBox>
+      <CheckBox fx:id="registeredAddressCheckbox" layoutX="489.0" layoutY="184.0" mnemonicParsing="false" onAction="#onClickRegisteredAddressCheckbox" />
+      <Label layoutX="343.0" layoutY="184.0" text="Select Registered Address" />
+
+
+    </children>
+</AnchorPane>
