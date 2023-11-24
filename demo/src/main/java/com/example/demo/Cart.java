@@ -59,16 +59,18 @@ public class Cart {
 	 * @param selectedItems 
 	 * @return 
 	 */
-	public Cart requestPlaceOrder(Products selectedItems) {
-		// TODO Auto-generated method
-		return null;
+	public void requestPlaceOrder(Products selectedItems) {
+
+
 	 }
 	/**
-	 * 
-	 * @param cart 
+	 *
 	 */
-	public void proceedToCheckout(Cart cart) {
-		// TODO Auto-generated method
+	public void proceedToCheckout(int customerId, String paymentType, String deliveryAddress) {
+
+		DbHandler dbHandler = new DbHandler();
+		dbHandler.placeOrder(this.getCartId(),customerId, paymentType, deliveryAddress);
+
 	 }
 	/**
 	 * 

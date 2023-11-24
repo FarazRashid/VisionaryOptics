@@ -1,11 +1,14 @@
 
 package com.example.demo;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DbHandler {
 
@@ -261,11 +264,13 @@ public class DbHandler {
 
 
 	public Cart getCart(Customer customer) {
-		String query = "SELECT c.cartId, c.totalAmount, cp.quantity, p.* FROM cart c "
-				+ "JOIN customercart cc ON c.cartId = cc.cartId "
-				+ "JOIN cartproduct cp ON c.cartId = cp.cartId "
-				+ "JOIN products p ON cp.productId = p.productId "
-				+ "WHERE cc.customerId = ?";
+		String query = "SELECT c.cartId, c.totalAmount, cp.quantity, p.* " +
+				"FROM Cart c " +
+				"JOIN CustomerCart cc ON c.cartId = cc.cartId " +
+				"LEFT JOIN CartProduct cp ON c.cartId = cp.cartId " +
+				"LEFT JOIN Products p ON cp.productId = p.productId " +
+				"WHERE cc.customerId = ?";
+
 
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -454,5 +459,111 @@ public class DbHandler {
 		}
 	}
 
+
+	public void placeOrder(int cartId, int customerId, String paymentType, String deliveryAddress) {
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password))
+		{
+			// Insert into Orders table
+			String insertOrderQuery = "INSERT INTO Orders (datePurchased, orderStatus, cartId, paymentType, deliveryAddress) VALUES (?, ?, ?, ?, ?)";
+			try (PreparedStatement orderStatement = connection.prepareStatement(insertOrderQuery, Statement.RETURN_GENERATED_KEYS)) {
+
+				String dateString = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+				orderStatement.setString(1, dateString); // Assuming datePurchased is of VARCHAR type
+				orderStatement.setString(2, "Just Placed");
+				orderStatement.setInt(3, cartId);
+				orderStatement.setString(4, paymentType);
+				orderStatement.setString(5, deliveryAddress);
+				orderStatement.executeUpdate();
+
+				// Get the generated orderId
+				int orderId;
+				try (var resultSet = orderStatement.getGeneratedKeys()) {
+					if (resultSet.next()) {
+						orderId = resultSet.getInt(1);
+					} else {
+						throw new SQLException("Failed to retrieve orderId.");
+					}
+				}
+
+				// Insert into customerOrderDispatcher table
+				String insertDispatcherQuery = "INSERT INTO customerOrderDispatcher (customerId, orderId, dispatcherId) VALUES (?, ?, ?)";
+				try (PreparedStatement dispatcherStatement = connection.prepareStatement(insertDispatcherQuery)) {
+					dispatcherStatement.setInt(1, customerId);
+					dispatcherStatement.setInt(2, orderId);
+					dispatcherStatement.setInt(3, getDispatcherIdByName("TCS")); // Assuming 'TCS' is the dispatcherName
+
+					dispatcherStatement.executeUpdate();
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace(); // Handle or log the exception appropriately
+		}
+	}
+
+	// Helper method to get dispatcherId by name
+	private int getDispatcherIdByName(String dispatcherName) throws SQLException
+	{
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password))
+		{
+			String query = "SELECT dispatcherId FROM Dispatcher WHERE dispatcherName = ?";
+			try (PreparedStatement statement = connection.prepareStatement(query)) {
+				statement.setString(1, dispatcherName);
+				try (var resultSet = statement.executeQuery()) {
+					if (resultSet.next()) {
+						return resultSet.getInt("dispatcherId");
+					} else {
+						throw new SQLException("Dispatcher not found for name: " + dispatcherName);
+					}
+				}
+			}
+		}
+	}
+
+	public Cart insertNewCart()
+	{
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password))
+		{
+			String insertCartQuery = "INSERT INTO cart (totalAmount) VALUES (?)";
+			try (PreparedStatement cartStatement = connection.prepareStatement(insertCartQuery, Statement.RETURN_GENERATED_KEYS)) {
+				cartStatement.setInt(1, 0);
+				cartStatement.executeUpdate();
+
+				// Get the generated cartId
+				int cartId;
+				try (var resultSet = cartStatement.getGeneratedKeys()) {
+					if (resultSet.next()) {
+						cartId = resultSet.getInt(1);
+					} else {
+						throw new SQLException("Failed to retrieve cartId.");
+					}
+				}
+
+				return new Cart() {{
+					setCartId(cartId);
+					setTotalAmount(0);
+					setProducts(new ArrayList<>());
+				}};
+			}
+		} catch (SQLException e) {
+			e.printStackTrace(); // Handle or log the exception appropriately
+			return null;
+		}
+	}
+
+	public void updateCustomerCart(int customerId,int cartId)
+	{
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password))
+		{
+			String insertCustomerCartQuery = "Update CustomerCart set cartId=? where customerId=?";
+			try (PreparedStatement customerCartStatement = connection.prepareStatement(insertCustomerCartQuery)) {
+				customerCartStatement.setInt(1, cartId);
+				customerCartStatement.setInt(2, customerId);
+				customerCartStatement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace(); // Handle or log the exception appropriately
+		}
+	}
 
 }

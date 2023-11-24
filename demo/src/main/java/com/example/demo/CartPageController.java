@@ -69,8 +69,9 @@ public class CartPageController  {
     }
 
     @FXML
-    void onClickCheckOut(ActionEvent event) {
+    void onClickCheckOut(ActionEvent event) throws IOException {
         // Handle checkout logic
+        HelloApplication.getInstance().switchScene("checkout-page.fxml", "");
     }
 
     @FXML

@@ -122,3 +122,6 @@ CREATE TABLE customerOrderDispatcher (
 
 ALTER TABLE Orders
 ADD COLUMN paymentType VARCHAR(50);
+
+ALTER TABLE Orders
+ADD COLUMN deliveryAddress VARCHAR(255);

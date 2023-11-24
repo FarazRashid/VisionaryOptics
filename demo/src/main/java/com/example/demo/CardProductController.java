@@ -8,6 +8,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CardProductController  {
@@ -42,16 +43,37 @@ public class CardProductController  {
     void onClickAddToCart(ActionEvent event) {
         int quantityToAdd = productQuantity.getValue();
 
-        List<Products> products = cart.getProducts();
-        boolean productExistsInCart = products.stream()
-                .anyMatch(p -> p.getDescription().equals(product.getDescription()));
+        // Ensure the cart is not null
+        if (cart == null) {
+            cart = new Cart();
+        }
 
-        if (productExistsInCart) {
-            // Product is already in the cart, update the quantity
-            cart.updateCartItem(product, "increment product quantity", quantityToAdd);
-        } else {
-            // Product is not in the cart, add it with the selected quantity
+        List<Products> products = cart.getProducts();
+
+        if(products==null){
+            products= new ArrayList<Products>();
+            cart.setProducts(products);
+        }
+
+        if (products.isEmpty()) {
+            // Cart is empty, add the product with the selected quantity
             cart.updateCartItem(product, "insert product", quantityToAdd);
+        } else {
+            boolean productExistsInCart = products.stream()
+                    .anyMatch(p -> {
+                        if (product.getDescription() != null) {
+                            return p.getDescription() != null && p.getDescription().equals(product.getDescription());
+                        }
+                        return false;
+                    });
+
+            if (productExistsInCart) {
+                // Product is already in the cart, update the quantity
+                cart.updateCartItem(product, "increment product quantity", quantityToAdd);
+            } else {
+                // Product is not in the cart, add it with the selected quantity
+                cart.updateCartItem(product, "insert product", quantityToAdd);
+            }
         }
 
         HelloApplication.getInstance().setCart(cart);
@@ -63,6 +85,7 @@ public class CardProductController  {
             e.printStackTrace();
         }
     }
+
 }
 
 
