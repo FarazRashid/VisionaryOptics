@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
-public class OrdersPage {
+public class OrdersPageController {
 
     @FXML
     private GridPane cartGrid;

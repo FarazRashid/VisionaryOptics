@@ -1,5 +1,8 @@
 
 package com.example.demo;
+
+import java.util.Date;
+
 public class Order {
 
 	/**
@@ -18,6 +21,21 @@ public class Order {
 	 * 
 	 */
 	public Dispatcher dispatcher;
+
+	private Date orderDate;
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public void setCurrentDate(){
+		this.orderDate = new Date();
+	}
+
 	/**
 	 * Getter of cart
 	 */

@@ -91,3 +91,34 @@ UPDATE CartProduct
 SET quantity = 1
 WHERE cartId = 1;
 
+
+CREATE TABLE Orders (
+    orderId INT AUTO_INCREMENT PRIMARY KEY,
+    datePurchased DATE NOT NULL,
+    orderStatus VARCHAR(50) NOT NULL,
+    cartId INT NOT NULL,
+    FOREIGN KEY (cartId) REFERENCES Cart(cartId)
+);
+
+CREATE TABLE Dispatcher (
+    dispatcherId INT AUTO_INCREMENT PRIMARY KEY,
+    dispatcherName VARCHAR(255) NOT NULL,
+    dispatcherHeadquarters VARCHAR(255) NOT NULL
+);
+
+INSERT INTO Dispatcher (dispatcherName, dispatcherHeadquarters) VALUES
+('TCS', 'Islamabad');
+
+
+CREATE TABLE customerOrderDispatcher (
+    customerOrderDispatcherId INT AUTO_INCREMENT PRIMARY KEY,
+    customerId INT,
+    orderId INT,
+    dispatcherId INT,
+    foreign key (customerId) references Customer(customerId),
+    FOREIGN KEY (orderId) REFERENCES Orders(orderId),
+    FOREIGN KEY (dispatcherId) REFERENCES Dispatcher(dispatcherId)
+);
+
+ALTER TABLE Orders
+ADD COLUMN paymentType VARCHAR(50);
