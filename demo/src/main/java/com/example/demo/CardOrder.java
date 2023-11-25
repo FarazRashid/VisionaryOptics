@@ -2,8 +2,12 @@ package com.example.demo;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
+import java.io.IOException;
 
 public class CardOrder {
 
@@ -29,18 +33,24 @@ public class CardOrder {
     @FXML
     private Button viewOrder;
 
+    Order order;
+
     @FXML
     void trackOrder(ActionEvent event) {
 
     }
 
     @FXML
-    void viewOrder(ActionEvent event) {
+    void viewOrder(ActionEvent event) throws IOException {
+
+        HelloApplication.getInstance().setOrder(order);
+        HelloApplication.getInstance().switchScene("order-product-page.fxml","");
 
     }
 
     public void initData(Order order) {
 
+        this.order=order;
         orderId.setText(order.getOrderId().toString());
         orderStatus.setText(order.getOrderStatus());
         orderPaymentType.setText(order.getPaymentType());

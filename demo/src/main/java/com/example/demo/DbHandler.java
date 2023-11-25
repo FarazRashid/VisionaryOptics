@@ -594,4 +594,41 @@ public class DbHandler {
 			return Collections.emptyList();
 		}
     }
+
+	public Cart getCart(int cartId)
+	{
+		String query = "SELECT c.cartId, c.totalAmount, cp.quantity, p.* " +
+				"FROM Cart c " +
+				"JOIN CartProduct cp ON c.cartId = cp.cartId " +
+				"LEFT JOIN Products p ON cp.productId = p.productId " +
+				"WHERE c.cartId = ?";
+
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
+			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+			preparedStatement.setInt(1, cartId);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			Cart cart = null;
+
+			while (resultSet.next()) {
+				if (cart == null) {
+					cart = CartMapper.map(resultSet);
+					cart.setProducts(new ArrayList<>());
+				}
+
+				Products product = ProductMapper.map(resultSet);
+				product.setQuantity(resultSet.getInt("quantity"));
+				cart.getProducts().add(product);
+			}
+
+			return cart;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
 }
