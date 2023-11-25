@@ -93,6 +93,7 @@ public class Order {
 		// if the order date is less than 3 days then the order status will be "In Transit"
 		// if the order date is more than 3 days then the order status will be "Delivered"
 
+		
 		Date currentDate = new Date();
 		long diff = currentDate.getTime() - orderDate.getTime();
 		long diffDays = diff / (24 * 60 * 60 * 1000);
