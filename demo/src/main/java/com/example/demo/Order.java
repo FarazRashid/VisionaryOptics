@@ -87,6 +87,26 @@ public class Order {
 	 * Getter of orderStatus
 	 */
 	public String getOrderStatus() {
+		// we will set the order status dynamically by checking the date
+		// if the order date is less than 1 day then the order status will be "Processing"
+		// if the order date is less than 2 days then the order status will be "Shipped"
+		// if the order date is less than 3 days then the order status will be "In Transit"
+		// if the order date is more than 3 days then the order status will be "Delivered"
+
+		
+		Date currentDate = new Date();
+		long diff = currentDate.getTime() - orderDate.getTime();
+		long diffDays = diff / (24 * 60 * 60 * 1000);
+		if (diffDays < 1) {
+			orderStatus = "Processing";
+		} else if (diffDays < 2) {
+			orderStatus = "Shipped";
+		} else if (diffDays < 4) {
+			orderStatus = "In Transit";
+		} else if (diffDays > 4){
+			orderStatus = "Delivered";
+		}
+
 	 	 return orderStatus; 
 	}
 	/**

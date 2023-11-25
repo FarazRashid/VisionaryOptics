@@ -53,6 +53,7 @@ public class OrdersPageController {
 
                 CardOrder controller = loader.getController();
                 controller.initData(orderItems.get(i));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -83,7 +84,11 @@ public class OrdersPageController {
 
     @FXML
     void onClickTrackOrder(ActionEvent event) {
-
+        try{
+            HelloApplication.getInstance().switchScene("track-order.fxml", "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
