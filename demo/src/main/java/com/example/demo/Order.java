@@ -8,7 +8,7 @@ public class Order {
 	/**
 	 * 
 	 */
-	public Cart cart;
+	public int cartId;
 	/**
 	 * 
 	 */
@@ -20,9 +20,32 @@ public class Order {
 	/**
 	 * 
 	 */
-	public Dispatcher dispatcher;
+	public String dispatcherName;
 
 	private Date orderDate;
+
+	private String paymentType;
+
+	private int totalAmount;
+
+	public int getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(int totalAmount) {
+		this.totalAmount = totalAmount;
+
+	}
+
+	public String getPaymentType() {
+		return paymentType;
+	}
+
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+
+	}
+
 
 	public Date getOrderDate() {
 		return orderDate;
@@ -39,14 +62,14 @@ public class Order {
 	/**
 	 * Getter of cart
 	 */
-	public Cart getCart() {
-	 	 return cart; 
+	public int getCartId() {
+	 	 return cartId;
 	}
 	/**
 	 * Setter of cart
 	 */
-	public void setCart(Cart cart) { 
-		 this.cart = cart; 
+	public void setCartId(int cartId) {
+		 this.cartId = cartId;
 	}
 	/**
 	 * Getter of orderId
@@ -75,14 +98,14 @@ public class Order {
 	/**
 	 * Getter of dispatcher
 	 */
-	public Dispatcher getDispatcher() {
-	 	 return dispatcher; 
+	public String getDispatcherName() {
+	 	 return dispatcherName;
 	}
 	/**
 	 * Setter of dispatcher
 	 */
-	public void setDispatcher(Dispatcher dispatcher) { 
-		 this.dispatcher = dispatcher; 
+	public void setDispatcherName(String dispatcherName) {
+		 this.dispatcherName = dispatcherName;
 	}
 	/**
 	 * 
@@ -90,6 +113,7 @@ public class Order {
 	 */
 	public void displayOrderStatus(String orderStatus) { 
 		// TODO Auto-generated method
-	 } 
+	 }
+
 
 }

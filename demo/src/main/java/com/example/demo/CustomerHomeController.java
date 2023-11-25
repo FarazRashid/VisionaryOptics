@@ -21,6 +21,7 @@ import java.util.logging.Level;
 
 public class CustomerHomeController {
 
+    public Button viewOrdersButton;
     @FXML
     private Button CustomerSupportButton;
     public Button goToCart;
@@ -172,5 +173,11 @@ public class CustomerHomeController {
     }
 
 
-
+    public void onClickGoToViewOrders(ActionEvent actionEvent) {
+        try{
+            HelloApplication.getInstance().switchScene("orders-page.fxml", "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

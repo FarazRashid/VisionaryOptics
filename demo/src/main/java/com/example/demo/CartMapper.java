@@ -10,4 +10,5 @@ public class CartMapper {
         cart.setTotalAmount(resultSet.getInt("totalAmount"));
         return cart;
     }
+
 }

@@ -19,6 +19,8 @@ public class HelloApplication extends Application {
     private static HelloApplication instance;
     private Stage primaryStage;
 
+    private static Order selectedOrder;
+
     public Customer getCustomer() {
         return customer;
     }
@@ -31,6 +33,14 @@ public class HelloApplication extends Application {
     }
     public void setCart(Cart cart) {
         HelloApplication.cart = cart;
+    }
+
+    public Order getOrder() {
+        return selectedOrder;
+    }
+
+    public void setOrder(Order order) {
+        HelloApplication.selectedOrder = order;
     }
 
     public void switchScene(String fxmlFileName, String imageFilePath) throws IOException {
