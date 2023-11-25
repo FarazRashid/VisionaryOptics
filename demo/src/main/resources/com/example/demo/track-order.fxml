@@ -11,8 +11,9 @@
         <AnchorPane prefHeight="899.0" prefWidth="596.0" style="-fx-background-color: #fcfcfc;" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fx:id="logoImageView" fitHeight="502.0" fitWidth="606.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" />
-                <Button fx:id="goBackToHomePageButton" layoutX="56.0" layoutY="653.0" mnemonicParsing="false" onAction="#onClickSwitchToHomePage" prefHeight="29.0" prefWidth="200.0" text="Back to Home Page" />
-            <Button fx:id="viewOrdersButton" layoutX="57.0" layoutY="606.0" mnemonicParsing="false" onAction="#onClickSwitchToViewOrders" prefHeight="25.0" prefWidth="199.0" text="View Orders" />
+                <Button fx:id="goBackToHomePageButton" layoutX="57.0" layoutY="608.0" mnemonicParsing="false" onAction="#onClickSwitchToHomePage" prefHeight="29.0" prefWidth="200.0" text="Back to Home Page" />
+            <Button fx:id="viewOrdersButton" layoutX="57.0" layoutY="569.0" mnemonicParsing="false" onAction="#onClickSwitchToViewOrders" prefHeight="25.0" prefWidth="199.0" text="View Orders" />
+            <Button fx:id="signOutButton" layoutX="58.0" layoutY="652.0" mnemonicParsing="false" onAction="#onClickSignOut" prefHeight="27.0" prefWidth="199.0" text="Sign Out" />
             </children>
         </AnchorPane>
     </left>

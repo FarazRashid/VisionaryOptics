@@ -53,6 +53,7 @@ public class OrdersPageController {
 
                 CardOrder controller = loader.getController();
                 controller.initData(orderItems.get(i));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

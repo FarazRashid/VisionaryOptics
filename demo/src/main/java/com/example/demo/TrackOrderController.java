@@ -5,9 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import
 
 public class TrackOrderController {
+
+    @FXML
+    private Button signOutButton;
 
     @FXML
     private Label dispatcherLabel;
@@ -38,7 +40,11 @@ public class TrackOrderController {
 
     @FXML
     void onClickSwitchToHomePage(ActionEvent event) {
-
+        try {
+            HelloApplication.getInstance().switchScene("customer-home-page.fxml", "");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -54,18 +60,28 @@ public class TrackOrderController {
     @FXML
     void onClickSwitchToOrderDetails(ActionEvent event) {
         try {
-            HelloApplication.getInstance().switchScene("order-details.fxml", "");
+//            HelloApplication.getInstance().setOrder(HelloApplication.getInstance().getOrder());
+            HelloApplication.getInstance().switchScene("order-product-page.fxml", "");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    void initialize(){
+    public void initialize(){
         Order order = HelloApplication.getInstance().getOrder();
         orderIdLabel.setText(order.getOrderId().toString());
         orderStatusLabel.setText(order.getOrderStatus());
-//        totalAmountLabel.setText((order.getTotalAmount()));
+        totalAmountLabel.setText((Integer.toString(order.getTotalAmount())));
         dispatcherLabel.setText(order.getDispatcherName());
+    }
+
+    @FXML
+    void onClickSignOut(ActionEvent event) {
+    try {
+            HelloApplication.getInstance().switchScene("hello-view.fxml", "Assets/logo.JPG");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

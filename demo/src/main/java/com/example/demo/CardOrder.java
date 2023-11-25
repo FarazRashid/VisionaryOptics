@@ -37,6 +37,12 @@ public class CardOrder {
 
     @FXML
     void trackOrder(ActionEvent event) {
+        try {
+            HelloApplication.getInstance().setOrder(order);
+            HelloApplication.getInstance().switchScene("track-order.fxml","");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
