@@ -83,7 +83,11 @@ public class OrdersPageController {
 
     @FXML
     void onClickTrackOrder(ActionEvent event) {
-
+        try{
+            HelloApplication.getInstance().switchScene("track-order.fxml", "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
