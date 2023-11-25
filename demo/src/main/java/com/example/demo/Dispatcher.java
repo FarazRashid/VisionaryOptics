@@ -12,18 +12,15 @@ public class Dispatcher {
 	 * 
 	 */
 	private Integer dispatcherID;
+
+	private String name;
+
 	/**
 	 * Getter of order
 	 */
-	public List<Order> getOrder() {
-	 	 return order; 
-	}
 	/**
 	 * Setter of order
 	 */
-	public void setOrder(List<Order> order) { 
-		 this.order = order; 
-	}
 	/**
 	 * Getter of dispatcherID
 	 */
@@ -44,6 +41,13 @@ public class Dispatcher {
 	public String requestOrderStatus(Integer orderNumber) { 
 		// TODO Auto-generated method
 		return null;
-	 } 
+	 }
 
+    public String getName() {
+		return name;
+    }
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

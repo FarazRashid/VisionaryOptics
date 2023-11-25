@@ -502,7 +502,7 @@ public class DbHandler {
 	}
 
 	// Helper method to get dispatcherId by name
-	private int getDispatcherIdByName(String dispatcherName) throws SQLException
+	public int getDispatcherIdByName(String dispatcherName) throws SQLException
 	{
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password))
 		{
@@ -566,4 +566,32 @@ public class DbHandler {
 		}
 	}
 
+    public List<Order> getOrders(int customerId) {
+		String query = "SELECT o.orderId, o.datePurchased, o.orderStatus, o.paymentType, o.deliveryAddress, c.totalAmount, c.cartId, d.dispatcherName " +
+				"FROM Orders o " +
+				"JOIN Cart c ON o.cartId = c.cartId " +
+				"JOIN CustomerOrderDispatcher cod ON o.orderId = cod.orderId " +
+				"JOIN Dispatcher d ON cod.dispatcherId = d.dispatcherId " +
+				"WHERE cod.customerId = ?";
+
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
+			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+			preparedStatement.setInt(1, customerId);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			List<Order> orderList = new ArrayList<>();
+			while (resultSet.next()) {
+				Order order = OrderMapper.map(resultSet);
+				orderList.add(order);
+			}
+
+			return orderList;
+
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE,"Error while Fetching all Orders : ", e);
+			return Collections.emptyList();
+		}
+    }
 }
