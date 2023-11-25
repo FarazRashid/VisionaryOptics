@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import
 
 public class TrackOrderController {
 
@@ -62,9 +63,9 @@ public class TrackOrderController {
     void initialize(){
         Order order = HelloApplication.getInstance().getOrder();
         orderIdLabel.setText(order.getOrderId().toString());
-        orderStatusLabel.setText(order.getStatus());
-        totalAmountLabel.setText(order.getTotalAmount().toString());
-        dispatcherLabel.setText(order.getDispatcher().getName());
+        orderStatusLabel.setText(order.getOrderStatus());
+//        totalAmountLabel.setText((order.getTotalAmount()));
+        dispatcherLabel.setText(order.getDispatcherName());
     }
 
 
