@@ -101,7 +101,7 @@ public class CustomerHomeController {
     @FXML
     void onClickViewProfile(ActionEvent event) {
         try {
-            HelloApplication.getInstance().switchScene("view-profile.fxml", "");
+            HelloApplication.getInstance().switchScene("view-profile.fxml", "Assets/logo.JPG");
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Failed to switch to view-profile.", e);
         }

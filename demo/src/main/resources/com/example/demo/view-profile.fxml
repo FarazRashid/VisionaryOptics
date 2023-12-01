@@ -17,18 +17,18 @@
     <right>
         <AnchorPane prefHeight="899.0" prefWidth="580.0" style="-fx-background-color: #fcfcfc;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="285.0" layoutY="103.0" prefHeight="46.0" prefWidth="64.0" text="View Profile" />
-                <Label layoutX="76.0" layoutY="211.0" text="Name" />
-                <Button fx:id="saveButton" layoutX="83.0" layoutY="603.0" onAction="#onClickEditProfileButton" mnemonicParsing="false" prefHeight="29.0" prefWidth="404.0" text="Edit Profile" />
+                <Label id="profileLabel" layoutX="179.0" layoutY="71.0" prefHeight="78.0" prefWidth="254.0" text="View Profile" textAlignment="CENTER" />
+                <Label layoutX="76.0" layoutY="194.0" prefHeight="34.0" prefWidth="74.0" text="Name" />
+                <Button fx:id="saveButton" layoutX="83.0" layoutY="603.0" mnemonicParsing="false" onAction="#onClickEditProfileButton" prefHeight="29.0" prefWidth="404.0" text="Edit Profile" />
                 <Button fx:id="goBackToHomePageButton" layoutX="83.0" layoutY="650.0" mnemonicParsing="false" onAction="#onClickSwitchToHomePage" prefHeight="29.0" prefWidth="404.0" text="Back to Home Page" />
                 <Label fx:id="registerMessageLabel" layoutX="76.0" layoutY="166.0" prefHeight="17.0" prefWidth="371.0" textFill="#e81313" />
-            <Label layoutX="76.0" layoutY="283.0" prefHeight="17.0" prefWidth="45.0" text="Address" />
-            <Label layoutX="75.0" layoutY="389.0" text="Phone Number" />
-            <Label layoutX="75.0" layoutY="461.0" prefHeight="17.0" prefWidth="36.0" text="Email" />
-            <Label fx:id="usernameLabel" layoutX="232.0" layoutY="208.0" prefHeight="22.0" prefWidth="217.0" text="Your Name" />
-            <Label fx:id="addressLabel" layoutX="231.0" layoutY="280.0" prefHeight="66.0" prefWidth="227.0" text="Address" />
-            <Label fx:id="phoneNumberLabel" layoutX="228.0" layoutY="385.0" prefHeight="24.0" prefWidth="222.0" text="Phone Number" />
-            <Label fx:id="emailLabel" layoutX="229.0" layoutY="457.0" prefHeight="24.0" prefWidth="225.0" text="Email" />
+            <Label layoutX="76.0" layoutY="283.0" prefHeight="65.0" prefWidth="71.0" text="Address" />
+            <Label layoutX="75.0" layoutY="383.0" prefHeight="24.0" prefWidth="104.0" text="Phone Number" />
+            <Label layoutX="75.0" layoutY="449.0" prefHeight="29.0" prefWidth="96.0" text="Email" />
+            <Label fx:id="usernameLabel" layoutX="232.0" layoutY="189.0" prefHeight="41.0" prefWidth="217.0" text="Your Name" />
+            <Label fx:id="addressLabel" layoutX="231.0" layoutY="280.0" prefHeight="66.0" prefWidth="227.0" text="Address" wrapText="true" />
+            <Label fx:id="phoneNumberLabel" layoutX="228.0" layoutY="378.0" prefHeight="31.0" prefWidth="222.0" text="Phone Number" />
+            <Label fx:id="emailLabel" layoutX="229.0" layoutY="448.0" prefHeight="33.0" prefWidth="225.0" text="Email" />
             </children>
         </AnchorPane>
     </right>

@@ -89,7 +89,7 @@ public class CartPageController  {
     @FXML
     void onClickViewProfile(ActionEvent event) {
         try {
-            HelloApplication.getInstance().switchScene("view-profile.fxml", "");
+            HelloApplication.getInstance().switchScene("view-profile.fxml", "Assets/logo.JPG");
         } catch (IOException e) {
             e.printStackTrace();
         }

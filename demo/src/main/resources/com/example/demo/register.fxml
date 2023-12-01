@@ -19,7 +19,7 @@
     <right>
         <AnchorPane prefHeight="899.0" prefWidth="580.0" style="-fx-background-color: #fcfcfc;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="285.0" layoutY="103.0" prefHeight="46.0" prefWidth="64.0" text="Register" />
+                <Label fx:id="loginLabel" layoutX="199.0" layoutY="81.0" prefHeight="68.0" prefWidth="162.0" text="Register" />
                 <Label layoutX="76.0" layoutY="213.0" text="Username" />
                 <Label layoutX="77.0" layoutY="269.0" text="Password" />
                 <PasswordField fx:id="registerPasswordTextField" layoutX="228.0" layoutY="263.0" prefHeight="25.0" prefWidth="222.0" promptText="Password" />

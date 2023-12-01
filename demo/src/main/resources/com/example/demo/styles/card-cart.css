@@ -1,0 +1,107 @@
+/* FILEPATH: /F:/SDAProject/VisionaryOptics/demo/src/main/resources/com/example/demo/hello-view.css */
+
+.root{
+    -fx-background-color: #fff;
+}
+.label{
+    -fx-text-fill:rgba(100, 39, 39, 0.918);
+    -fx-font-family:"sans-serif";
+    -fx-font-size:14px;
+}
+
+.text-field {
+    -fx-background-color: rgb(250, 227, 227);
+    -fx-text-fill: rgb(63, 21, 21);
+    -fx-font-size: 14px;
+    -fx-radius: 9; /* Adjust the value to make borders rounder */
+    -fx-prompt-text-fill: rgba(175, 67, 67, 0.432); /* Color of the prompt text */
+    -fx-effect: innershadow(gaussian, #cf7676, 1, 0, 0, 0);
+    -fx-border-color: transparent; /* Corrected border color */
+
+    -fx-background-radius: 9; /* Adjust the value to make borders rounder */
+    -fx-border-radius: 9; /* Adjust the value to make borders rounder */
+    
+}
+
+.text-field:focused {
+    -fx-border-color: #a77878;
+    -fx-border-width: 2px;
+    -fx-background-radius: 9; /* Adjust the value to make borders rounder */
+    -fx-border-radius: 9; 
+}
+.button {
+    -fx-font-family: "sans-serif";
+    -fx-font-size: 14px;
+    -fx-background-color: rgb(250, 227, 227);
+    -fx-text-fill: rgb(63, 21, 21);
+    -fx-background-radius: 9; /* Adjust the value to make the background rounder */
+    -fx-border-color: transparent; /* Corrected border color */
+    -fx-border-radius: 9; /* Adjust the value to make the border rounder */
+    -fx-background-insets: 0, 0, 1, 2;
+}
+
+.button:hover {
+    -fx-background-color: rgba(151, 17, 17, 0.74);
+    -fx-text-fill: white;
+    -fx-background-insets: 0, 0, 1, 2;
+    /* make mouse pointer change */
+    -fx-cursor: hand;
+}
+
+/* CardProduct.css */
+
+/* Style for the VBox containing the entire card */
+#cardVBox {
+    -fx-background-color: #f2e9e9;
+    -fx-border-color: white; /* Adjusted border color */
+    -fx-border-radius: 9; /* Adjust the value to make the border rounder */
+}
+
+/* Style for the ImageView inside the card */
+#cardImageView {
+    -fx-fit-height: 130;
+    -fx-fit-width: 229;
+    /* Add additional styles as needed for the ImageView */
+}
+
+/* Style for the HBox containing product information */
+#productInfoHBox {
+    -fx-pref-height: 24;
+    -fx-pref-width: 230;
+    /* Add additional styles as needed for the HBox */
+}
+
+/* Style for the Labels inside the product info HBox */
+#productName, #productPrice {
+    -fx-text-fill: rgb(63, 21, 21);
+    -fx-font-size: 14px;
+    /* Add additional styles as needed for the Labels */
+}
+
+/* Style for the HBox containing quantity and button */
+#quantityHBox {
+    -fx-pref-height: 100;
+    -fx-pref-width: 200;
+    /* Add additional styles as needed for the HBox */
+}
+
+/* Style for the Spinner inside the quantity HBox */
+#productQuantity {
+    -fx-pref-height: 19;
+    -fx-pref-width: 143;
+    /* Add additional styles as needed for the Spinner */
+}
+
+/* Style for the Button inside the quantity HBox */
+#deleteFromCart {
+    -fx-background-color: rgb(158, 55, 55);
+    -fx-text-fill: white;
+    /* Add additional styles as needed for the Button */
+}
+
+#productQuantity {
+    -fx-pref-height: 19;
+    -fx-pref-width: 143;
+    -fx-font-size: 14; /* Set the font size */
+    /* Add additional styles as needed for the Spinner */
+}
