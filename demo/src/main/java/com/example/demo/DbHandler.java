@@ -631,4 +631,19 @@ public class DbHandler {
 		}
 
 	}
+
+	public void updateCartTotalAmount(String cartId, int newAmount)
+	{
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password))
+		{
+			String updateCartQuery = "Update Cart set totalAmount=? where cartId=?";
+			try (PreparedStatement cartStatement = connection.prepareStatement(updateCartQuery)) {
+				cartStatement.setInt(1, newAmount);
+				cartStatement.setString(2, cartId);
+				cartStatement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace(); // Handle or log the exception appropriately
+		}
+	}
 }

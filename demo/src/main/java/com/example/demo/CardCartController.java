@@ -61,6 +61,8 @@ public class CardCartController {
         int productId = Integer.parseInt(cartCardId.getText());
         // Call the deleteCartItem method in the Cart class
         cart.updateCartItem(currentProduct, "delete product", 0);
+        DbHandler dbHandler = new DbHandler();
+        dbHandler.updateCartTotalAmount(cart.getCartId().toString(), cart.getTotalAmount());
         removeSpinnerListener();
         HelloApplication.getInstance().setCart(cart);
         HelloApplication.getInstance().switchScene("cart-page.fxml", "");
@@ -87,6 +89,8 @@ public class CardCartController {
 
         // Call the updateCartItem method in the Cart class
         cart.updateCartItem(currentProduct, action, quantityChange);
+        DbHandler dbHandler = new DbHandler();
+        dbHandler.updateCartTotalAmount(cart.getCartId().toString(), cart.getTotalAmount());
         removeSpinnerListener();
         HelloApplication.getInstance().setCart(cart);
         HelloApplication.getInstance().switchScene("cart-page.fxml", "");

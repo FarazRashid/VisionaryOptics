@@ -58,6 +58,8 @@ public class CardProductController  {
         if (products.isEmpty()) {
             // Cart is empty, add the product with the selected quantity
             cart.updateCartItem(product, "insert product", quantityToAdd);
+            DbHandler dbHandler = new DbHandler();
+            dbHandler.updateCartTotalAmount(cart.getCartId().toString(), cart.getTotalAmount());
         } else {
             boolean productExistsInCart = products.stream()
                     .anyMatch(p -> {
@@ -70,9 +72,13 @@ public class CardProductController  {
             if (productExistsInCart) {
                 // Product is already in the cart, update the quantity
                 cart.updateCartItem(product, "increment product quantity", quantityToAdd);
+                DbHandler dbHandler = new DbHandler();
+                dbHandler.updateCartTotalAmount(cart.getCartId().toString(), cart.getTotalAmount());
             } else {
                 // Product is not in the cart, add it with the selected quantity
                 cart.updateCartItem(product, "insert product", quantityToAdd);
+                DbHandler dbHandler = new DbHandler();
+                dbHandler.updateCartTotalAmount(cart.getCartId().toString(), cart.getTotalAmount());
             }
         }
 
