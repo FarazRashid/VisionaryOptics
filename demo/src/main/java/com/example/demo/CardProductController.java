@@ -42,7 +42,7 @@ public class CardProductController  {
     @FXML
     void onClickAddToCart(ActionEvent event) {
         int quantityToAdd = productQuantity.getValue();
-
+        product.setQuantity(quantityToAdd);
         // Ensure the cart is not null
         if (cart == null) {
             cart = new Cart();
