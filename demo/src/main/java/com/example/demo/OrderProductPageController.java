@@ -39,6 +39,7 @@ public class OrderProductPageController {
         Order order = HelloApplication.getInstance().getOrder();
         Cart cart = dbHandler.getCart(order.getCartId());
 
+        cart.recalculateTotal();
         cartTotalAmount.setText(String.valueOf(cart.getTotalAmount()));
 
         // Clear existing children

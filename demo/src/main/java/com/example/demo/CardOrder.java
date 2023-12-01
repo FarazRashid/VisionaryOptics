@@ -57,10 +57,13 @@ public class CardOrder {
     public void initData(Order order) {
 
         this.order=order;
+        DbHandler dbHandler= new DbHandler();
+        Cart cart=  dbHandler.getCart(order.getCartId());
+        cart.recalculateTotal();
         orderId.setText(order.getOrderId().toString());
         orderStatus.setText(order.getOrderStatus());
         orderPaymentType.setText(order.getPaymentType());
-        orderPrice.setText(String.valueOf(order.getTotalAmount()));
+        orderPrice.setText(String.valueOf(cart.getTotalAmount()));
         orderDate.setText(order.getOrderDate().toString());
         dispatcher.setText(order.getDispatcherName());
 

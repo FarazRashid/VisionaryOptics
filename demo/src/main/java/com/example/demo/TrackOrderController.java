@@ -69,9 +69,12 @@ public class TrackOrderController {
 
     public void initialize(){
         Order order = HelloApplication.getInstance().getOrder();
+        DbHandler dbHandler= new DbHandler();
+        Cart cart= dbHandler.getCart(order.getCartId());
+        cart.recalculateTotal();
         orderIdLabel.setText(order.getOrderId().toString());
         orderStatusLabel.setText(order.getOrderStatus());
-        totalAmountLabel.setText((Integer.toString(order.getTotalAmount())));
+        totalAmountLabel.setText((Integer.toString(cart.getTotalAmount())));
         dispatcherLabel.setText(order.getDispatcherName());
     }
 

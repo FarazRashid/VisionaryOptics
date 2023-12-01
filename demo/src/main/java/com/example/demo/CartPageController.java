@@ -44,6 +44,7 @@ public class CartPageController  {
         Customer customer= HelloApplication.getInstance().getCustomer();
         customerHomePageUserName.setText(customer.getName());
         setCurrentCart();
+        currentCart.recalculateTotal();
         List<Products> cartItems = currentCart.getProducts();
 
         // Create a VBox to hold rows
