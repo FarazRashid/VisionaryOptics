@@ -71,7 +71,7 @@ public class ReceiveCustomerSupportController {
         } else if (lowerCaseQuery.contains("return")) {
             response = "We offer a 1-year warranty on manufacturing defects for our eyewear. If you encounter any issues related to the manufacturing of your glasses within the first year of purchase, please contact us with your order number and a description of the problem. We'll be happy to assist you in resolving the issue or, if necessary, provide a replacement.";
         } else if (lowerCaseQuery.contains("track")) {
-            response = "You can track your order using the tracking number in your email.";
+            response = "You can track your order using the tracking number in your email and going to the assigned Dispatch Rider's website.";
         } else if (lowerCaseQuery.contains("frame")) {
             response = "We provide light-weight metal and plastic frames.";
         } else if (lowerCaseQuery.contains("prescription lenses")) {
@@ -88,6 +88,9 @@ public class ReceiveCustomerSupportController {
         }
         else if (lowerCaseQuery.contains("bye")){
             response = "Thank you for contacting Visionary Optics Support. Have a nice day!";
+        }
+        else if(lowerCaseQuery.contains("thank")){
+            response = "You're welcome! Is there anything else I can help you with?";
         }
         else {
             response = "I'm sorry, I didn't understand that. Please provide a valid query.";

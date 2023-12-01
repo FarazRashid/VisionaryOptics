@@ -28,8 +28,8 @@
             <Label layoutX="84.0" layoutY="445.0" text="Password" />
             <PasswordField fx:id="loginPasswordTextField" layoutX="229.0" layoutY="438.0" prefHeight="25.0" prefWidth="222.0" promptText="Password" />
             <TextField fx:id="loginEmailTextField" layoutX="230.0" layoutY="319.0" prefHeight="25.0" prefWidth="220.0" promptText="user@email.com" />
-            <Button fx:id="loginButton" layoutX="83.0" layoutY="603.0" mnemonicParsing="false" onAction="#onClickLoginButton" prefHeight="29.0" prefWidth="404.0" text="Login" />
-            <Button fx:id="switchToRegisterButton" layoutX="83.0" layoutY="650.0" mnemonicParsing="false" onAction="#onClickSwitchToRegister" prefHeight="29.0" prefWidth="404.0" text="Switch to Register" />
+            <Button fx:id="loginButton" layoutX="83.0" layoutY="592.0" mnemonicParsing="false" onAction="#onClickLoginButton" prefHeight="40.0" prefWidth="404.0" text="Login" />
+            <Button fx:id="switchToRegisterButton" layoutX="83.0" layoutY="650.0" mnemonicParsing="false" onAction="#onClickSwitchToRegister" prefHeight="37.0" prefWidth="404.0" text="Switch to Register" />
             <Label fx:id="loginMessageLabel" layoutX="79.0" layoutY="227.0" prefHeight="17.0" prefWidth="371.0" textFill="#e81313" />
          </children>
       </AnchorPane>

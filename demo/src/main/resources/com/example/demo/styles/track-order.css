@@ -9,6 +9,12 @@
     -fx-font-size:15px;
 }
 
+#profileLabel{
+    -fx-font-color: rgb(63, 21, 21);
+    -fx-font-size: 32px;
+    -fx-font-weight: 200;
+}
+
 .text-field {
     -fx-background-color: rgb(250, 227, 227);
     -fx-text-fill: rgb(63, 21, 21);

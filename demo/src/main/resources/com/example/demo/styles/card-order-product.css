@@ -12,7 +12,7 @@
 .text-field {
     -fx-background-color: rgb(250, 227, 227);
     -fx-text-fill: rgb(63, 21, 21);
-    -fx-font-size: 14px;
+    -fx-font-size: 9px;
     -fx-radius: 9; /* Adjust the value to make borders rounder */
     -fx-prompt-text-fill: rgba(175, 67, 67, 0.432); /* Color of the prompt text */
     -fx-effect: innershadow(gaussian, #cf7676, 1, 0, 0, 0);

@@ -58,8 +58,9 @@ public class HelloApplication extends Application {
             imageView.setImage(image);
         }
         Scene scene = new Scene(root, 1280, 720);
-
         String cssFileName = fxmlFileName.replace(".fxml", ".css");
+        java.lang.System.out.println(cssFileName);
+
         scene.getStylesheets().add(getClass().getResource("styles/"+cssFileName).toExternalForm());
 
 //        scene.getStylesheets().add(HelloApplication.class.getResource("hello-view.css").toExternalForm());

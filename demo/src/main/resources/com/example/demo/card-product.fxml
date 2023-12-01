@@ -16,9 +16,9 @@
             <ImageView fitHeight="132.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true" />
             <HBox prefHeight="27.0" prefWidth="335.0">
                <children>
-                  <Label fx:id="productName" prefHeight="27.0" prefWidth="282.0" text="{product.name}">
+                  <Label fx:id="productName" prefHeight="49.0" prefWidth="217.0" text="{product.name}" wrapText="true">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="21.0" />
                      </font></Label>
                   <Label text="\$" />
                   <Label fx:id="productPrice" prefHeight="27.0" prefWidth="105.0" text="{productPrice}">

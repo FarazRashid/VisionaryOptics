@@ -19,8 +19,8 @@
             <children>
                 <Label id="profileLabel" layoutX="179.0" layoutY="71.0" prefHeight="78.0" prefWidth="254.0" text="View Profile" textAlignment="CENTER" />
                 <Label layoutX="76.0" layoutY="194.0" prefHeight="34.0" prefWidth="74.0" text="Name" />
-                <Button fx:id="saveButton" layoutX="83.0" layoutY="603.0" mnemonicParsing="false" onAction="#onClickEditProfileButton" prefHeight="29.0" prefWidth="404.0" text="Edit Profile" />
-                <Button fx:id="goBackToHomePageButton" layoutX="83.0" layoutY="650.0" mnemonicParsing="false" onAction="#onClickSwitchToHomePage" prefHeight="29.0" prefWidth="404.0" text="Back to Home Page" />
+                <Button fx:id="saveButton" layoutX="83.0" layoutY="588.0" mnemonicParsing="false" onAction="#onClickEditProfileButton" prefHeight="44.0" prefWidth="404.0" text="Edit Profile" />
+                <Button fx:id="goBackToHomePageButton" layoutX="83.0" layoutY="650.0" mnemonicParsing="false" onAction="#onClickSwitchToHomePage" prefHeight="44.0" prefWidth="404.0" text="Back to Home Page" />
                 <Label fx:id="registerMessageLabel" layoutX="76.0" layoutY="166.0" prefHeight="17.0" prefWidth="371.0" textFill="#e81313" />
             <Label layoutX="76.0" layoutY="283.0" prefHeight="65.0" prefWidth="71.0" text="Address" />
             <Label layoutX="75.0" layoutY="383.0" prefHeight="24.0" prefWidth="104.0" text="Phone Number" />
