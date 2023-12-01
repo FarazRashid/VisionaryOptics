@@ -632,6 +632,38 @@ public class DbHandler {
 
 	}
 
+	public Order getOrder(int orderId)
+	{
+		String query = "SELECT o.orderId, o.datePurchased, o.orderStatus, o.paymentType, o.deliveryAddress, c.totalAmount, c.cartId, d.dispatcherName " +
+				"FROM Orders o " +
+				"JOIN Cart c ON o.cartId = c.cartId " +
+				"JOIN CustomerOrderDispatcher cod ON o.orderId = cod.orderId " +
+				"JOIN Dispatcher d ON cod.dispatcherId = d.dispatcherId " +
+				"WHERE o.orderId = ?";
+
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
+			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+			preparedStatement.setInt(1, orderId);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			Order order = null;
+
+			while (resultSet.next()) {
+				if (order == null) {
+					order = OrderMapper.map(resultSet);
+				}
+			}
+
+			return order;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
 	public void updateCartTotalAmount(String cartId, int newAmount)
 	{
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password))

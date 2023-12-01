@@ -25,6 +25,9 @@ public class ReceiveCustomerSupportController {
     @FXML
     private Button HomePageButton;
 
+    private static Boolean isTrackOrderFlag = false;
+
+
     @FXML
     private TextArea chatTextArea;
 
@@ -64,14 +67,25 @@ public class ReceiveCustomerSupportController {
 
         String lowerCaseQuery = userQuery.toLowerCase();
 
-        if (lowerCaseQuery.contains("order") && !lowerCaseQuery.contains("track")) {
-            response = "Sure, I'd be happy to assist you. Please provide your order number.";
-        } else if (lowerCaseQuery.contains("check status")) {
-            response = "I apologize for the inconvenience. Let me check the status for you.";
-        } else if (lowerCaseQuery.contains("return")) {
+        if (lowerCaseQuery.contains("return")) {
             response = "We offer a 1-year warranty on manufacturing defects for our eyewear. If you encounter any issues related to the manufacturing of your glasses within the first year of purchase, please contact us with your order number and a description of the problem. We'll be happy to assist you in resolving the issue or, if necessary, provide a replacement.";
-        } else if (lowerCaseQuery.contains("track")) {
-            response = "You can track your order using the tracking number in your email.";
+        }
+        else if (lowerCaseQuery.contains("track") || isTrackOrderFlag || lowerCaseQuery.contains("order status")) {
+
+            if(!isTrackOrderFlag) {
+                response = "You can track your order using the tracking number in your email. If you provide me with your order number, I can also track it for you.";
+                isTrackOrderFlag = true;
+            }
+            else{
+                // get order status from database
+                // extract the orderID(Integer) from the userQuery
+                String[] words = userQuery.split(" ");
+                int orderID = Integer.parseInt(words[words.length-1]);
+
+                response = "Your order's current status is: "+ Order.checkOrderStatus(orderID);
+                isTrackOrderFlag = false;
+            }
+
         } else if (lowerCaseQuery.contains("frame")) {
             response = "We provide light-weight metal and plastic frames.";
         } else if (lowerCaseQuery.contains("prescription lenses")) {
@@ -88,6 +102,9 @@ public class ReceiveCustomerSupportController {
         }
         else if (lowerCaseQuery.contains("bye")){
             response = "Thank you for contacting Visionary Optics Support. Have a nice day!";
+        }
+        else if(lowerCaseQuery.contains("thank")){
+            response = "You're welcome! Is there anything else I can help you with?";
         }
         else {
             response = "I'm sorry, I didn't understand that. Please provide a valid query.";

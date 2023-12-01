@@ -10,27 +10,27 @@
     <left>
         <AnchorPane prefHeight="899.0" prefWidth="596.0" style="-fx-background-color: #fcfcfc;" BorderPane.alignment="CENTER">
             <children>
-                <ImageView fx:id="logoImageView" fitHeight="502.0" fitWidth="606.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" />
-                <Button fx:id="goBackToHomePageButton" layoutX="57.0" layoutY="608.0" mnemonicParsing="false" onAction="#onClickSwitchToHomePage" prefHeight="29.0" prefWidth="200.0" text="Back to Home Page" />
-            <Button fx:id="viewOrdersButton" layoutX="57.0" layoutY="569.0" mnemonicParsing="false" onAction="#onClickSwitchToViewOrders" prefHeight="25.0" prefWidth="199.0" text="View Orders" />
-            <Button fx:id="signOutButton" layoutX="58.0" layoutY="652.0" mnemonicParsing="false" onAction="#onClickSignOut" prefHeight="27.0" prefWidth="199.0" text="Sign Out" />
+                <ImageView fx:id="logoImageView" fitHeight="502.0" fitWidth="606.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+                <Button fx:id="goBackToHomePageButton" layoutX="58.0" layoutY="567.0" mnemonicParsing="false" onAction="#onClickSwitchToHomePage" prefHeight="47.0" prefWidth="200.0" text="Back to Home Page" />
+            <Button fx:id="viewOrdersButton" layoutX="58.0" layoutY="508.0" mnemonicParsing="false" onAction="#onClickSwitchToViewOrders" prefHeight="46.0" prefWidth="199.0" text="View Orders" />
+            <Button fx:id="signOutButton" layoutX="58.0" layoutY="631.0" mnemonicParsing="false" onAction="#onClickSignOut" prefHeight="43.0" prefWidth="199.0" text="Sign Out" />
             </children>
         </AnchorPane>
     </left>
     <right>
         <AnchorPane prefHeight="899.0" prefWidth="580.0" style="-fx-background-color: #fcfcfc;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="285.0" layoutY="103.0" prefHeight="46.0" prefWidth="64.0" text="Track Order" />
-                <Label layoutX="76.0" layoutY="211.0" text="Order ID" />
+                <Label layoutX="173.0" layoutY="103.0" fx:id="profileLabel" prefHeight="46.0" prefWidth="176.0" text="Track Order" textAlignment="CENTER" wrapText="true" />
+                <Label layoutX="76.0" layoutY="211.0" prefHeight="17.0" prefWidth="100.0" text="Order ID" />
                 <Label fx:id="registerMessageLabel" layoutX="76.0" layoutY="166.0" prefHeight="17.0" prefWidth="371.0" textFill="#e81313" />
-            <Label layoutX="76.0" layoutY="292.0" prefHeight="17.0" prefWidth="84.0" text="Order Status" />
-            <Label layoutX="75.0" layoutY="389.0" prefHeight="17.0" prefWidth="99.0" text="Shipment Partner" />
-            <Label layoutX="75.0" layoutY="461.0" prefHeight="17.0" prefWidth="84.0" text="Total Amount" />
+            <Label layoutX="75.0" layoutY="283.0" prefHeight="33.0" prefWidth="121.0" text="Order Status" />
+            <Label layoutX="78.0" layoutY="379.0" prefHeight="37.0" prefWidth="130.0" text="Shipment Partner" />
+            <Label layoutX="75.0" layoutY="461.0" prefHeight="23.0" prefWidth="120.0" text="Total Amount" />
             <Label fx:id="orderIdLabel" layoutX="232.0" layoutY="208.0" prefHeight="22.0" prefWidth="217.0" text="Order ID" />
-            <Label fx:id="orderStatusLabel" layoutX="231.0" layoutY="289.0" prefHeight="21.0" prefWidth="108.0" text="Status" />
+            <Label fx:id="orderStatusLabel" layoutX="231.0" layoutY="289.0" prefHeight="21.0" prefWidth="152.0" text="Status" />
             <Label fx:id="dispatcherLabel" layoutX="228.0" layoutY="385.0" prefHeight="24.0" prefWidth="222.0" text="Dispatcher" />
-            <Label fx:id="totalAmountLabel" layoutX="229.0" layoutY="457.0" prefHeight="24.0" prefWidth="225.0" text="Total" />
-            <Button fx:id="viewOrderDetailButton" layoutX="78.0" layoutY="587.0" mnemonicParsing="false" onAction="#onClickSwitchToOrderDetails" prefHeight="25.0" prefWidth="457.0" text="View Order Details" />
+            <Label fx:id="totalAmountLabel" layoutX="228.0" layoutY="461.0" prefHeight="24.0" prefWidth="225.0" text="Total" />
+            <Button fx:id="viewOrderDetailButton" layoutX="78.0" layoutY="587.0" mnemonicParsing="false" onAction="#onClickSwitchToOrderDetails" prefHeight="45.0" prefWidth="457.0" text="View Order Details" />
             </children>
         </AnchorPane>
     </right>

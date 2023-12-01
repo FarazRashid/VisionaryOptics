@@ -39,7 +39,7 @@ public class CardOrder {
     void trackOrder(ActionEvent event) {
         try {
             HelloApplication.getInstance().setOrder(order);
-            HelloApplication.getInstance().switchScene("track-order.fxml","");
+            HelloApplication.getInstance().switchScene("track-order.fxml","Assets/logo.jpg");
         } catch (Exception e) {
             e.printStackTrace();
         }
