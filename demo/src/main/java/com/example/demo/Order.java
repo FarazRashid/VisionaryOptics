@@ -83,6 +83,14 @@ public class Order {
 	public void setOrderId(Integer orderId) { 
 		 this.orderId = orderId; 
 	}
+
+	public static String checkOrderStatus(Integer OrderID){
+
+		DbHandler dbHandler = new DbHandler();
+		Order order = dbHandler.getOrder(OrderID);
+		return order.getOrderStatus();
+
+	}
 	/**
 	 * Getter of orderStatus
 	 */

@@ -17,7 +17,6 @@
     -fx-prompt-text-fill: rgba(175, 67, 67, 0.432); /* Color of the prompt text */
     -fx-effect: innershadow(gaussian, #cf7676, 1, 0, 0, 0);
     -fx-border-color: transparent; /* Corrected border color */
-
     -fx-background-radius: 9; /* Adjust the value to make borders rounder */
     -fx-border-radius: 9; /* Adjust the value to make borders rounder */
     
@@ -54,15 +53,19 @@
     -fx-font-size: 14px;
     -fx-text-fill: rgb(63, 21, 21);
     -fx-background-radius: 9;
-    -fx-border-color: white; /* Adjusted border color */
+    -fx-border-color: transparent; /* Adjusted border color */
     -fx-border-radius: 9;
+
 }
 
 #categorySelect .list-cell {
     -fx-background-color: #f2e9e9;
+
 }
 
 #categorySelect .list-cell:hover {
     -fx-background-color: rgba(158, 55, 55, 0.8);
     -fx-text-fill: white;
+    -fx-cursor: hand;
+
 }
