@@ -16,21 +16,26 @@
             <ImageView fitHeight="132.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true" />
             <HBox prefHeight="27.0" prefWidth="335.0">
                <children>
-                  <Label fx:id="productName" prefHeight="49.0" prefWidth="217.0" text="{product.name}" wrapText="true">
+                  <Label fx:id="productName" prefHeight="31.0" prefWidth="339.0" text="{product.name}" wrapText="true">
                      <font>
                         <Font size="21.0" />
                      </font></Label>
                   <Label text="\$" />
-                  <Label fx:id="productPrice" prefHeight="27.0" prefWidth="105.0" text="{productPrice}">
+                  <Label fx:id="productPrice" prefHeight="27.0" prefWidth="142.0" text="{productPrice}">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
+                  <Label fx:id="productPrice1" prefHeight="27.0" prefWidth="142.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Spinner fx:id="productQuantity" prefHeight="38.0" prefWidth="185.0" />
-                  <Button fx:id="deleteFromCart" mnemonicParsing="false" onAction="#onClickAddToCart" prefHeight="38.0" prefWidth="124.0" text="Add To Cart">
+                  <Spinner fx:id="productQuantity" prefHeight="38.0" prefWidth="216.0" style="-fx-border-radius: 9;" />
+                  <Button fx:id="deleteFromCart" mnemonicParsing="false" onAction="#onClickAddToCart" prefHeight="38.0" prefWidth="118.0" text="Add To Cart">
                      <font>
                         <Font size="17.0" />
                      </font></Button>
