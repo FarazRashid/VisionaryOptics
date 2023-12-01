@@ -232,7 +232,13 @@ public class DbHandler {
 
 			int affectedRows = preparedStatement.executeUpdate();
 
+			Cart cart = insertNewCart( );
+			updateCustomerCart(customer.getCustomerId(),cart.getCartId());
 			return affectedRows > 0;
+
+			//create a new cart for customer and then add customer and cart to customerCart
+
+
 
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE,"Error while Inserting a Customer : ", e);
@@ -561,6 +567,15 @@ public class DbHandler {
 				customerCartStatement.setInt(2, customerId);
 				customerCartStatement.executeUpdate();
 			}
+			//If there are no rows with customerCart, then create a new row
+			catch (SQLException e) {
+				String insertCustomerCartQuery2 = "INSERT INTO CustomerCart (customerId, cartId) VALUES (?, ?)";
+				try (PreparedStatement customerCartStatement2 = connection.prepareStatement(insertCustomerCartQuery2)) {
+					customerCartStatement2.setInt(1, customerId);
+					customerCartStatement2.setInt(2, cartId);
+					customerCartStatement2.executeUpdate();
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace(); // Handle or log the exception appropriately
 		}
@@ -644,6 +659,27 @@ public class DbHandler {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace(); // Handle or log the exception appropriately
+		}
+	}
+
+	public String getHashedPassword(String enteredEmail) {
+		String query = "SELECT password FROM customer WHERE email=?";
+
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
+			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			preparedStatement.setString(1, enteredEmail);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				return resultSet.getString("password");
+			} else {
+				return null;
+			}
+
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE,"Error while Fetching a Customer : ", e);
+			return null;
 		}
 	}
 }
