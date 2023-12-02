@@ -47,6 +47,8 @@ public class CartPageController  {
         currentCart.recalculateTotal();
         List<Products> cartItems = currentCart.getProducts();
 
+        cartItems.removeIf(product -> product.getProductId() == 0);
+
         // Create a VBox to hold rows
         VBox rowsVBox = new VBox();
         rowsVBox.setSpacing(10); // Adjust the spacing as needed
