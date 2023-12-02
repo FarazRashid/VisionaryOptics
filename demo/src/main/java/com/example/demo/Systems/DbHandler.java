@@ -53,6 +53,7 @@ public class DbHandler {
 
 	}
 
+
 	/**
 	 * Getter of username
 	 */
