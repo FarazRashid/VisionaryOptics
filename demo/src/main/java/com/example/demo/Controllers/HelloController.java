@@ -84,7 +84,7 @@ public class HelloController {
     }
 
     private boolean validateEmail() {
-        if (!loginEmailTextField.getText().contains("@") || !loginEmailTextField.getText().contains(".com") || !loginEmailTextField.getText().contains(".pk") || !loginEmailTextField.getText().contains(".us")) {
+        if (!loginEmailTextField.getText().contains("@") || !loginEmailTextField.getText().contains(".com")) {
             loginMessageLabel.setText("Email must contain @ and .com!");
             return false;
         }
