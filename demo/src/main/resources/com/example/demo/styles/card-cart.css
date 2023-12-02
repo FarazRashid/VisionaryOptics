@@ -5,7 +5,7 @@
 }
 .label{
     -fx-text-fill:rgba(100, 39, 39, 0.918);
-    -fx-font-family:"sans-serif";
+    -fx-font-family: 'Maven Pro Regular';
     -fx-font-size:14px;
 }
 
@@ -30,7 +30,7 @@
     -fx-border-radius: 9; 
 }
 .button {
-    -fx-font-family: "sans-serif";
+    -fx-font-family: 'Maven Pro Regular';
     -fx-font-size: 14px;
     -fx-background-color: rgb(250, 227, 227);
     -fx-text-fill: rgb(63, 21, 21);

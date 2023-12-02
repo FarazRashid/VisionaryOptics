@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -51,6 +52,24 @@ public class HelloApplication extends Application {
         }
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fxmlFileName));
         Parent root = fxmlLoader.load();
+
+
+
+        try {
+            // Load custom font
+            Font loadedFont = Font.loadFont(getClass().getResourceAsStream("Fonts/MavenPro-Regular.ttf"), 14);
+
+            if (loadedFont != null) {
+
+                java.lang.System.out.println("Loaded Font: " + loadedFont.getName());
+                
+            } else {
+                java.lang.System.out.println("Failed to load font.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            java.lang.System.out.println("Error loading font: " + e.getMessage());
+        };
 
         if (!Objects.equals(imageFilePath, ""))
         {
