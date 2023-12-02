@@ -60,7 +60,7 @@ public class CartPageController  {
         // Dynamically create and populate the card for each cart item
         for (int i = 0; i < cartItems.size(); i++) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("card-cart.fxml"));
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("card-cart.fxml"));
                 rowsVBox.getChildren().add(loader.load());
 
                 CardCartController controller = loader.getController();

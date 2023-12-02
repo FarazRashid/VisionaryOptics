@@ -52,7 +52,7 @@ public class OrdersPageController {
         // Dynamically create and populate the card for each order item
         for (int i = 0; i < orderItems.size(); i++) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("card-order.fxml"));
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("card-order.fxml"));
                 rowsVBox.getChildren().add(loader.load());
 
                 CardOrder controller = loader.getController();

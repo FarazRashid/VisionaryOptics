@@ -72,13 +72,13 @@ public class CustomerHomeController {
         // Dynamically create and populate rows with 3 columns for each product
         for (int i = 0; i < products.size(); i += 3) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("card-product.fxml"));
+                FXMLLoader loader = new FXMLLoader( HelloApplication.class.getResource("card-product.fxml"));
                 System.out.println("Loading card-product.fxml from: " + loader.getLocation());
                 HBox rowHBox = new HBox();
 
                 // Add 3 columns to the row
                 for (int j = 0; j < 3 && i + j < products.size(); j++) {
-                    loader = new FXMLLoader(getClass().getResource("card-product.fxml"));
+                    loader = new FXMLLoader(HelloApplication.class.getResource("card-product.fxml"));
                     rowHBox.getChildren().add(loader.load());
 
                     CardProductController controller = loader.getController();

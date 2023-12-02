@@ -57,10 +57,8 @@ public class OrderProductPageController {
         // Dynamically create and populate the card for each cart item
         for (int i = 0; i < cart.getProducts().size(); i++) {
             try {
-                //this is not loading properly idk why
 
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("card-order-product.fxml"));
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("card-order-product.fxml"));
                 rowsVBox.getChildren().add(loader.load());
 
                 CardOrderProduct controller = loader.getController();
