@@ -1,9 +1,9 @@
 package com.example.demo.emailSystem;
 
-import com.example.demo.Cart;
-import com.example.demo.Customer;
-import com.example.demo.DbHandler;
-import com.example.demo.Order;
+import com.example.demo.Inventory.Cart;
+import com.example.demo.Users.Customer;
+import com.example.demo.Systems.DbHandler;
+import com.example.demo.Inventory.Order;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
