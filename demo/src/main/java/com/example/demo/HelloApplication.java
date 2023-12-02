@@ -53,24 +53,6 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fxmlFileName));
         Parent root = fxmlLoader.load();
 
-
-
-        try {
-            // Load custom font
-            Font loadedFont = Font.loadFont(getClass().getResourceAsStream("Fonts/MavenPro-Regular.ttf"), 14);
-
-            if (loadedFont != null) {
-
-                java.lang.System.out.println("Loaded Font: " + loadedFont.getName());
-                
-            } else {
-                java.lang.System.out.println("Failed to load font.");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            java.lang.System.out.println("Error loading font: " + e.getMessage());
-        };
-
         if (!Objects.equals(imageFilePath, ""))
         {
             ImageView imageView = (ImageView) fxmlLoader.getNamespace().get("logoImageView");
@@ -90,6 +72,7 @@ public class HelloApplication extends Application {
     }
 
     public void start(Stage primaryStage) throws Exception {
+        Font loadedFont = Font.loadFont(getClass().getResourceAsStream("Fonts/MavenPro-Regular.ttf"), 14);
         instance = this;
         this.primaryStage = primaryStage;
         switchScene("hello-view.fxml", "Assets/logo.jpg");  // Load your initial scene
