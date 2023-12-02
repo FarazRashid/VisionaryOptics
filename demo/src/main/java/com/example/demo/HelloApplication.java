@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.Inventory.Cart;
+import com.example.demo.Inventory.Order;
+import com.example.demo.Users.Customer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -51,6 +54,7 @@ public class HelloApplication extends Application {
             throw new IllegalStateException("Primary stage is not initialized.");
         }
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fxmlFileName));
+        System.out.println("Loading card-product.fxml from: " + fxmlLoader.getLocation());
         Parent root = fxmlLoader.load();
 
         if (!Objects.equals(imageFilePath, ""))
