@@ -222,8 +222,7 @@ public class DbHandler {
 		String query = "INSERT INTO customer (name, password, address, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
 
 		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
-			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-			// INSERT INTO customer (name, password, address, phoneNumber, email) VALUES (?, ?, ?, ?, ?)
+			 PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 			preparedStatement.setString(1, customer.getName());
 			preparedStatement.setString(2, customer.getPassword());
 			preparedStatement.setString(3, customer.getAddress());
@@ -232,19 +231,35 @@ public class DbHandler {
 
 			int affectedRows = preparedStatement.executeUpdate();
 
-			Cart cart = insertNewCart( );
-			updateCustomerCart(customer.getCustomerId(),cart.getCartId());
-			return affectedRows > 0;
+			if (affectedRows > 0) {
+				// Retrieve the generated keys (in this case, the auto-generated customer ID)
+				try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+					if (generatedKeys.next()) {
+						int generatedCustomerId = generatedKeys.getInt(1);
+						customer.setCustomerId(generatedCustomerId);
 
-			//create a new cart for customer and then add customer and cart to customerCart
+						// Insert a new cart and update CustomerCart
+						Cart cart = insertNewCart();
+						updateCustomerCart(generatedCustomerId, cart.getCartId());
 
-
-
+						// Return the generated customer ID
+						return true;
+					} else {
+						// Handle the case where no keys were generated
+						logger.log(Level.SEVERE, "No customer ID generated after insertion");
+						return false;
+					}
+				}
+			} else {
+				// Handle the case where no rows were affected
+				return false;
+			}
 		} catch (SQLException e) {
-			logger.log(Level.SEVERE,"Error while Inserting a Customer : ", e);
+			logger.log(Level.SEVERE, "Error while inserting a Customer: ", e);
 			return false;
 		}
 	}
+
 
 	public List<Products> getAllProducts() {
 		String query = "SELECT * FROM products"; // Update the query according to your database schema
@@ -557,23 +572,32 @@ public class DbHandler {
 		}
 	}
 
-	public void updateCustomerCart(int customerId,int cartId)
-	{
-		try (Connection connection = DriverManager.getConnection(connectionString, username, password))
-		{
-			String insertCustomerCartQuery = "Update CustomerCart set cartId=? where customerId=?";
-			try (PreparedStatement customerCartStatement = connection.prepareStatement(insertCustomerCartQuery)) {
-				customerCartStatement.setInt(1, cartId);
-				customerCartStatement.setInt(2, customerId);
-				customerCartStatement.executeUpdate();
-			}
-			//If there are no rows with customerCart, then create a new row
-			catch (SQLException e) {
-				String insertCustomerCartQuery2 = "INSERT INTO CustomerCart (customerId, cartId) VALUES (?, ?)";
-				try (PreparedStatement customerCartStatement2 = connection.prepareStatement(insertCustomerCartQuery2)) {
-					customerCartStatement2.setInt(1, customerId);
-					customerCartStatement2.setInt(2, cartId);
-					customerCartStatement2.executeUpdate();
+	public void updateCustomerCart(int customerId, int cartId) {
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password)) {
+			// Check if the row exists
+			String checkCustomerCartQuery = "SELECT COUNT(*) FROM CustomerCart WHERE customerId=?";
+			try (PreparedStatement checkStatement = connection.prepareStatement(checkCustomerCartQuery)) {
+				checkStatement.setInt(1, customerId);
+				ResultSet resultSet = checkStatement.executeQuery();
+				resultSet.next();
+				int rowCount = resultSet.getInt(1);
+
+				if (rowCount > 0) {
+					// Row exists, update it
+					String updateCustomerCartQuery = "UPDATE CustomerCart SET cartId=? WHERE customerId=?";
+					try (PreparedStatement updateStatement = connection.prepareStatement(updateCustomerCartQuery)) {
+						updateStatement.setInt(1, cartId);
+						updateStatement.setInt(2, customerId);
+						updateStatement.executeUpdate();
+					}
+				} else {
+					// Row does not exist, insert a new one
+					String insertCustomerCartQuery = "INSERT INTO CustomerCart (customerId, cartId) VALUES (?, ?)";
+					try (PreparedStatement insertStatement = connection.prepareStatement(insertCustomerCartQuery)) {
+						insertStatement.setInt(1, customerId);
+						insertStatement.setInt(2, cartId);
+						insertStatement.executeUpdate();
+					}
 				}
 			}
 		} catch (SQLException e) {
@@ -581,7 +605,8 @@ public class DbHandler {
 		}
 	}
 
-    public List<Order> getOrders(int customerId) {
+
+	public List<Order> getOrders(int customerId) {
 		String query = "SELECT o.orderId, o.datePurchased, o.orderStatus, o.paymentType, o.deliveryAddress, c.totalAmount, c.cartId, d.dispatcherName " +
 				"FROM Orders o " +
 				"JOIN Cart c ON o.cartId = c.cartId " +
@@ -679,6 +704,35 @@ public class DbHandler {
 
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE,"Error while Fetching a Customer : ", e);
+			return null;
+		}
+	}
+
+	public Order getLatestOrder(int customerId)
+	{
+		String query = "SELECT o.orderId, o.datePurchased, o.orderStatus, o.paymentType, o.deliveryAddress, c.totalAmount, c.cartId, d.dispatcherName " +
+				"FROM Orders o " +
+				"JOIN Cart c ON o.cartId = c.cartId " +
+				"JOIN CustomerOrderDispatcher cod ON o.orderId = cod.orderId " +
+				"JOIN Dispatcher d ON cod.dispatcherId = d.dispatcherId " +
+				"WHERE cod.customerId = ? ORDER BY o.orderId DESC LIMIT 1";
+
+		try (Connection connection = DriverManager.getConnection(connectionString, username, password);
+			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+			preparedStatement.setInt(1, customerId);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			Order order = null;
+			if (resultSet.next()) {
+				order = OrderMapper.map(resultSet);
+			}
+
+			return order;
+
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE,"Error while Fetching all Orders : ", e);
 			return null;
 		}
 	}

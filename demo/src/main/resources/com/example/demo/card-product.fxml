@@ -13,7 +13,7 @@
    <children>
       <VBox layoutX="65.0" layoutY="-34.0" prefHeight="180.0" prefWidth="230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="130.0" fitWidth="229.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cardProductImage" fitHeight="130.0" fitWidth="229.0" pickOnBounds="true" preserveRatio="true" />
             <HBox prefHeight="24.0" prefWidth="230.0">
                <children>
                   <Label fx:id="productName" prefHeight="17.0" prefWidth="152.0" text="{product.name}" />

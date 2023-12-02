@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.emailSystem.EmailService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -142,6 +143,10 @@ public class CheckoutPage {
         alert.setHeaderText("Order placed successfully");
         alert.setContentText("Your order has been placed successfully");
         alert.showAndWait();
+
+        // Send order confirmation email
+        Customer customerToSendEmail= HelloApplication.getInstance().getCustomer();
+        EmailService.sendOrderConfirmation(customerToSendEmail);
 
         // Redirect the user to the home page
         try {

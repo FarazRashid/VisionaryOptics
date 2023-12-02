@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 
@@ -104,6 +105,13 @@ public class CardCartController {
         cardCartCategory.setText(products.getCategory());
         cardCartQuantity.setText(String.valueOf(products.getQuantity()));
         cartCardId.setText(String.valueOf(products.getProductId()));
+
+        Image image = new Image("file:" + "Assets/"+ products.getProductId()+".jpg", 229, 130, false, false);
+        //if image not found display imageNotFound.jpg
+        if(image.isError()){
+            image = new Image("file:" + "Assets/imageNotFound.jpg", 229, 130, false, false);
+        }
+        cardCartImage.setImage(image);
 
         // Initialize the Spinner with a value factory
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, products.getQuantity());
