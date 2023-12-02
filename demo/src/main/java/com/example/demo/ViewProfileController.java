@@ -39,7 +39,7 @@ public class ViewProfileController {
     @FXML
     void onClickEditProfileButton(ActionEvent event) {
         try {
-            HelloApplication.getInstance().switchScene("edit-profile.fxml", "");
+            HelloApplication.getInstance().switchScene("edit-profile.fxml", "Assets/logo.jpg");
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Failed to switch to edit-profile.", e);
         }

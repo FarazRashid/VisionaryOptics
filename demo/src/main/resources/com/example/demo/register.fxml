@@ -19,18 +19,18 @@
     <right>
         <AnchorPane prefHeight="899.0" prefWidth="580.0" style="-fx-background-color: #fcfcfc;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="285.0" layoutY="103.0" prefHeight="46.0" prefWidth="64.0" text="Register" />
-                <Label layoutX="76.0" layoutY="211.0" text="Username" />
-                <Label layoutX="77.0" layoutY="267.0" text="Password" />
+                <Label fx:id="loginLabel" layoutX="199.0" layoutY="81.0" prefHeight="68.0" prefWidth="162.0" text="Register" />
+                <Label layoutX="76.0" layoutY="213.0" text="Username" />
+                <Label layoutX="77.0" layoutY="269.0" text="Password" />
                 <PasswordField fx:id="registerPasswordTextField" layoutX="228.0" layoutY="263.0" prefHeight="25.0" prefWidth="222.0" promptText="Password" />
                 <TextField fx:id="registerUsernameTextField" layoutX="229.0" layoutY="207.0" prefHeight="25.0" prefWidth="220.0" promptText="Username" />
                 <Button fx:id="registerButton" layoutX="83.0" layoutY="603.0" mnemonicParsing="false" onAction="#onClickRegisterButton" prefHeight="29.0" prefWidth="404.0" text="Register" />
                 <Button fx:id="switchToLoginButton" layoutX="83.0" layoutY="650.0" mnemonicParsing="false" onAction="#onClickSwitchToLogin" prefHeight="29.0" prefWidth="404.0" text="Switch to Login" />
                 <Label fx:id="registerMessageLabel" layoutX="76.0" layoutY="166.0" prefHeight="17.0" prefWidth="371.0" textFill="#e81313" />
-            <Label layoutX="73.0" layoutY="369.0" prefHeight="17.0" prefWidth="45.0" text="Address" />
-            <Label layoutX="73.0" layoutY="418.0" text="Phone Number" />
-            <Label layoutX="73.0" layoutY="469.0" prefHeight="17.0" prefWidth="36.0" text="Email" />
-            <Label layoutX="73.0" layoutY="322.0" text="Confirm Password" />
+            <Label layoutX="73.0" layoutY="371.0" prefHeight="17.0" prefWidth="102.0" text="Address" />
+            <Label layoutX="73.0" layoutY="421.0" text="Phone Number" />
+            <Label layoutX="73.0" layoutY="475.0" prefHeight="17.0" prefWidth="65.0" text="Email" />
+            <Label layoutX="73.0" layoutY="324.0" text="Confirm Password" />
             <PasswordField fx:id="registerConfirmPasswordTextField" layoutX="229.0" layoutY="318.0" prefHeight="25.0" prefWidth="222.0" promptText="Confirm Password" />
             <TextField fx:id="registerAddressField" layoutX="228.0" layoutY="365.0" prefHeight="25.0" prefWidth="224.0" promptText="Address" />
             <TextField fx:id="registerPhoneTextField" layoutX="228.0" layoutY="414.0" prefHeight="25.0" prefWidth="222.0" promptText="+92XXXXXXXXXX" />

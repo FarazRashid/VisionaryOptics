@@ -7,24 +7,39 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="180.0" prefWidth="230.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.CardProductController">
    <children>
-      <VBox layoutX="65.0" layoutY="-34.0" prefHeight="180.0" prefWidth="230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="65.0" layoutY="-34.0" prefHeight="197.0" prefWidth="360.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fx:id="cardProductImage" fitHeight="130.0" fitWidth="229.0" pickOnBounds="true" preserveRatio="true" />
-            <HBox prefHeight="24.0" prefWidth="230.0">
+
+            <ImageView fx:id="cardProductImage" fitHeight="132.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true" />
+            <HBox prefHeight="27.0" prefWidth="335.0">
                <children>
-                  <Label fx:id="productName" prefHeight="17.0" prefWidth="152.0" text="{product.name}" />
+                  <Label fx:id="productName" prefHeight="31.0" prefWidth="339.0" text="{product.name}" wrapText="true">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Label>
                   <Label text="\$" />
-                  <Label fx:id="productPrice" text="{productPrice}" />
+                  <Label fx:id="productPrice" prefHeight="27.0" prefWidth="142.0" text="{productPrice}">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="productPrice1" prefHeight="27.0" prefWidth="142.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Spinner fx:id="productQuantity" prefHeight="19.0" prefWidth="143.0" />
-                  <Button fx:id="deleteFromCart" mnemonicParsing="false" onAction="#onClickAddToCart" text="Add To Cart" />
+                  <Spinner fx:id="productQuantity" prefHeight="38.0" prefWidth="216.0" style="-fx-border-radius: 9;" />
+                  <Button fx:id="deleteFromCart" mnemonicParsing="false" onAction="#onClickAddToCart" prefHeight="38.0" prefWidth="118.0" text="Add To Cart">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Button>
                </children>
             </HBox>
          </children>

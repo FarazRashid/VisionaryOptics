@@ -9,10 +9,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.CustomerHomeController">
    <children>
-       <ScrollPane fx:id="scrollPane" layoutX="149.0" layoutY="53.0" prefHeight="646.0" prefWidth="835.0">
+       <ScrollPane fx:id="scrollPane" layoutX="302.0" layoutY="71.0" prefHeight="628.0" prefWidth="911.0" style="-fx-background-color: #c7b6b5;">
          <content>
             <GridPane fx:id="productGrid" prefHeight="550.0" prefWidth="768.0">
               <columnConstraints>
@@ -28,14 +29,29 @@
          </content>
       </ScrollPane>
       <ImageView fitHeight="106.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="14.0" layoutY="106.0" prefHeight="17.0" prefWidth="55.0" text="Welcome" />
-      <Label fx:id="customerHomePageUserName" layoutX="69.0" layoutY="106.0" prefHeight="17.0" prefWidth="77.0" text="{name}" />
-      <Button fx:id="signOutButton" layoutX="20.0" layoutY="636.0" mnemonicParsing="false" onAction="#onClickSignOut" prefHeight="25.0" prefWidth="113.0" text="Sign Out" />
-      <Button fx:id="viewProfileButton" layoutX="18.0" layoutY="594.0" mnemonicParsing="false" onAction="#onClickViewProfile" prefHeight="25.0" prefWidth="113.0" text="View Profile" />
-      <Button fx:id="goToCart" layoutX="907.0" layoutY="28.0" mnemonicParsing="false" onAction="#onClickGoToCart" prefHeight="25.0" prefWidth="77.0" text="Checkout" />
-      <ComboBox fx:id="categorySelect" layoutX="255.0" layoutY="23.0" onAction="#onClickSelectCategory" prefWidth="150.0" promptText="All Categories" />
-      <Label layoutX="149.0" layoutY="24.0" prefHeight="22.0" prefWidth="106.0" text="Select Category" />
-      <Button fx:id="CustomerSupportButton" layoutX="18.0" layoutY="550.0" mnemonicParsing="false" onAction="#onClickGoToCustomerSupport" prefHeight="25.0" prefWidth="113.0" text="Chat with Us!" />
-      <Button fx:id="viewOrdersButton" layoutX="775.0" layoutY="28.0" mnemonicParsing="false" onAction="#onClickGoToViewOrders" prefHeight="25.0" prefWidth="113.0" text="View Orders" />
+      <Label layoutX="14.0" layoutY="91.0" prefHeight="32.0" prefWidth="106.0" text="Welcome">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label fx:id="customerHomePageUserName" layoutX="102.0" layoutY="80.0" prefHeight="53.0" prefWidth="136.0" text="{name}">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Button fx:id="signOutButton" layoutX="26.0" layoutY="622.0" mnemonicParsing="false" onAction="#onClickSignOut" prefHeight="53.0" prefWidth="212.0" text="Sign Out">
+         <font>
+            <Font size="22.0" />
+         </font></Button>
+      <Button fx:id="viewProfileButton" layoutX="26.0" layoutY="555.0" mnemonicParsing="false" onAction="#onClickViewProfile" prefHeight="53.0" prefWidth="212.0" text="View Profile">
+         <font>
+            <Font size="22.0" />
+         </font></Button>
+      <Button fx:id="goToCart" layoutX="1051.0" layoutY="8.0" mnemonicParsing="false" onAction="#onClickGoToCart" prefHeight="47.0" prefWidth="136.0" text="Checkout" />
+      <ComboBox fx:id="categorySelect" layoutX="424.0" layoutY="19.0" onAction="#onClickSelectCategory" prefWidth="150.0" promptText="All Categories" style="-fx-background-color: #f2e9e9;" />
+      <Label layoutX="302.0" layoutY="13.0" prefHeight="38.0" prefWidth="164.0" text="Select Category" />
+      <Button fx:id="CustomerSupportButton" layoutX="26.0" layoutY="485.0" mnemonicParsing="false" onAction="#onClickGoToCustomerSupport" prefHeight="53.0" prefWidth="212.0" text="Chat with Us!">
+         <font>
+            <Font size="22.0" />
+         </font></Button>
+      <Button fx:id="viewOrdersButton" layoutX="843.0" layoutY="8.0" mnemonicParsing="false" onAction="#onClickGoToViewOrders" prefHeight="47.0" prefWidth="156.0" text="View Orders" />
    </children>
 </AnchorPane>

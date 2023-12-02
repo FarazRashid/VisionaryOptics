@@ -15,14 +15,12 @@
 
     <children>
         <ImageView fitHeight="106.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" />
-        <Label layoutX="14.0" layoutY="36.0" prefHeight="17.0" prefWidth="55.0" text="Welcome" />
-        <Label fx:id="customerHomePageUserName" layoutX="82.0" layoutY="36.0" prefHeight="17.0" prefWidth="77.0" text="{name}" />
-        <Button fx:id="signOutButton" layoutX="20.0" layoutY="636.0" mnemonicParsing="false" onAction="#onClickSignOut" prefHeight="25.0" prefWidth="113.0" text="Sign Out" />
-        <Button fx:id="viewProfileButton" layoutX="18.0" layoutY="594.0" mnemonicParsing="false" onAction="#onClickViewProfile" prefHeight="25.0" prefWidth="113.0" text="View Profile" />
+        <Button fx:id="signOutButton" layoutX="20.0" layoutY="559.0" mnemonicParsing="false" onAction="#onClickSignOut" prefHeight="42.0" prefWidth="181.0" text="Sign Out" />
+        <Button fx:id="viewProfileButton" layoutX="20.0" layoutY="501.0" mnemonicParsing="false" onAction="#onClickViewProfile" prefHeight="42.0" prefWidth="181.0" text="View Profile" />
 
         <!-- Address Section -->
-        <Label layoutX="20.0" layoutY="160.0" prefHeight="17.0" prefWidth="100.0" text="Enter Address:" />
-        <TextField fx:id="addressTextField" layoutX="20.0" layoutY="180.0" prefWidth="300.0" />
+        <Label layoutX="18.0" layoutY="123.0" prefHeight="42.0" prefWidth="138.0" text="Enter Address:" />
+        <TextField fx:id="addressTextField" layoutX="20.0" layoutY="172.0" prefHeight="33.0" prefWidth="300.0" />
 
 
         <!-- Cool UI/UX for Payment Type -->
@@ -31,9 +29,9 @@
             <!-- For example, show a credit card image for Credit Card payment, or a cash icon for Cash payment -->
         </AnchorPane>
 
-        <Button fx:id="placeOrderButton" layoutX="20.0" layoutY="400.0" mnemonicParsing="false" onAction="#onClickPlaceOrder" prefHeight="25.0" prefWidth="113.0" text="Place Order" />
-        <Button fx:id="goBackHomeButton" layoutX="20.0" layoutY="440.0" mnemonicParsing="false" onAction="#onClickGoBackHome" prefHeight="25.0" prefWidth="113.0" text="Go Back To Home" />
-        <ComboBox fx:id="categorySelect" layoutX="20.0" layoutY="238.0" onAction="#onClickSelectPaymentType" prefHeight="25.0" prefWidth="175.0" promptText="Select Payment Method" />
+        <Button fx:id="placeOrderButton" layoutX="20.0" layoutY="383.0" mnemonicParsing="false" onAction="#onClickPlaceOrder" prefHeight="42.0" prefWidth="181.0" text="Place Order" />
+        <Button fx:id="goBackHomeButton" layoutX="20.0" layoutY="440.0" mnemonicParsing="false" onAction="#onClickGoBackHome" prefHeight="42.0" prefWidth="181.0" text="Go Back To Home" />
+        <ComboBox fx:id="categorySelect" layoutX="20.0" layoutY="238.0" onAction="#onClickSelectPaymentType" prefHeight="42.0" prefWidth="181.0" promptText="Select Payment Method" />
 
 
         <VBox fx:id="creditCardPayment" layoutX="27.0" layoutY="283.0" spacing="10" visible="false">
@@ -50,8 +48,8 @@
                 <TextField fx:id="cardCVV" layoutX="195.0" layoutY="367.0" />
             </HBox>
         </VBox>
-      <CheckBox fx:id="registeredAddressCheckbox" layoutX="489.0" layoutY="184.0" mnemonicParsing="false" onAction="#onClickRegisteredAddressCheckbox" />
-      <Label layoutX="343.0" layoutY="184.0" text="Select Registered Address" />
+      <CheckBox fx:id="registeredAddressCheckbox" layoutX="528.0" layoutY="180.0" mnemonicParsing="false" onAction="#onClickRegisteredAddressCheckbox" />
+      <Label layoutX="337.0" layoutY="172.0" prefHeight="33.0" prefWidth="189.0" text="Select Registered Address" />
 
 
     </children>
