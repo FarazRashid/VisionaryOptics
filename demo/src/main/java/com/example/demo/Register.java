@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.password.BCrypt;
+import com.example.demo.password.BasicPasswordHashingStrategy;
+import com.example.demo.password.PasswordHashingStrategy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,6 +16,11 @@ import java.io.IOException;
 
 public class Register {
 
+    private PasswordHashingStrategy passwordHashingStrategy;
+
+    public void setPasswordHashingStrategy(PasswordHashingStrategy passwordHashingStrategy) {
+        this.passwordHashingStrategy = passwordHashingStrategy;
+    }
     public Button switchToLoginButton;
     @FXML
     private ImageView logoImageView;
@@ -42,23 +50,36 @@ public class Register {
     private TextField registerUsernameTextField;
     @FXML
     void onClickRegisterButton(ActionEvent event) {
-        if (validateFields() && validatePasswordMatch() && validatePhoneNumber() && validateEmail()) {
-            DbHandler dbHandler = new DbHandler();
-            String username = registerUsernameTextField.getText();
-            String password = registerPasswordTextField.getText();
-            String email = registerEmailTextField.getText();
-            String phone = registerPhoneTextField.getText();
-            String address = registerAddressField.getText();
+        try {
 
-            Customer customer = new Customer(username, password, email, phone, address,0);
+            this.passwordHashingStrategy = new BasicPasswordHashingStrategy();
 
-            if(dbHandler.create(customer)){
-                registerMessageLabel.setText("Account created successfully!");
+            if (validateFields() && validatePasswordMatch() && validatePhoneNumber() && validateEmail()) {
+                DbHandler dbHandler = new DbHandler();
+                String username = registerUsernameTextField.getText();
+                String password = registerPasswordTextField.getText();
+                String email = registerEmailTextField.getText();
+                String phone = registerPhoneTextField.getText();
+                String address = registerAddressField.getText();
+
+                // Use password hashing strategy
+                String generatedSalt = BCrypt.gensalt();
+
+
+                String hashedPassword = passwordHashingStrategy.hashPassword(password, generatedSalt);
+
+                Customer customer = new Customer(username, hashedPassword, email, phone, address, 0);
+
+                if (dbHandler.create(customer)) {
+                    registerMessageLabel.setText("Account created successfully!");
+                } else {
+                    registerMessageLabel.setText("Account creation failed!");
+                }
+
             }
-            else{
-                registerMessageLabel.setText("Account creation failed!");
-            }
-
+        } catch (Exception e) {
+            // Handle exceptions appropriately
+            e.printStackTrace(); // Log or handle the exception as needed
         }
     }
 

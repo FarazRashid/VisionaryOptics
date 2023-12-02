@@ -110,7 +110,7 @@ public class Cart {
 					recalculateTotal();
 				}
 				break;
-
+				
 			case "increment product quantity":
 				// TODO: Implement logic to increment the quantity of the product in the cart
 				for (Products existingProduct : products) {

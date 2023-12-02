@@ -36,3 +36,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### EmailLoginInfo class file ###
+```
+/src/main/java/com/example/demo/emailSystem/EmailLoginInfo.java

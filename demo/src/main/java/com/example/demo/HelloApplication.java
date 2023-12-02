@@ -16,6 +16,8 @@ public class HelloApplication extends Application {
     private static Customer customer;
 
     private static Cart cart;
+
+    //applies singleton pattern
     private static HelloApplication instance;
     private Stage primaryStage;
 
@@ -75,9 +77,12 @@ public class HelloApplication extends Application {
     }
 
     public static HelloApplication getInstance() {
+            if (instance == null)
+            {
+                    instance = new HelloApplication();
+            }
         return instance;
     }
-
     public static void main(String[] args) {
         launch();
     }

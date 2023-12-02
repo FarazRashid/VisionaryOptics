@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.password.BasicPasswordHashingStrategy;
+import com.example.demo.password.PasswordHashingStrategy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,35 +31,48 @@ public class HelloController {
     @FXML
     private ImageView logoImageView;
 
+    private PasswordHashingStrategy passwordHashingStrategy;
+
+    public void setPasswordHashingStrategy(PasswordHashingStrategy passwordHashingStrategy) {
+        this.passwordHashingStrategy = passwordHashingStrategy;
+    }
+
+
     @FXML
     void onClickLoginButton(ActionEvent event) throws IOException {
+        try {
+            this.passwordHashingStrategy = new BasicPasswordHashingStrategy();
 
-        if(loginEmailTextField.getText().isBlank() == false && loginPasswordTextField.getText().isBlank() == false && validateEmail()){
-            String email = loginEmailTextField.getText();
-            String password = loginPasswordTextField.getText();
+            if (!loginEmailTextField.getText().isBlank() && !loginPasswordTextField.getText().isBlank() && validateEmail()) {
+                String enteredEmail = loginEmailTextField.getText();
+                String enteredPassword = loginPasswordTextField.getText();
 
-            DbHandler dbHandler = new DbHandler();
+                DbHandler dbHandler = new DbHandler();
 
-            if (dbHandler.validateLogin(email, password)) {
-                // Login successful, switch to the desired scene
-                Customer customer = dbHandler.getCustomer(email);
-                Cart cart = dbHandler.getCart(customer);
-                HelloApplication.getInstance().setCustomer(customer);
-                HelloApplication.getInstance().setCart(cart);
-                HelloApplication.getInstance().switchScene("customer-homepage.fxml", "");
+                // Retrieve the hashed password from the database based on the entered email
+                String storedHashedPassword = dbHandler.getHashedPassword(enteredEmail);
+
+                if (enteredPassword.equals(storedHashedPassword) || storedHashedPassword != null && (passwordHashingStrategy.checkPassword(enteredPassword, storedHashedPassword))) {
+                    // Login successful, switch to the desired scene
+                    Customer customer = dbHandler.getCustomer(enteredEmail);
+                    Cart cart = dbHandler.getCart(customer);
+                    HelloApplication.getInstance().setCustomer(customer);
+                    HelloApplication.getInstance().setCart(cart);
+
+                    HelloApplication.getInstance().switchScene("customer-homepage.fxml", "");
+                } else {
+                    // Login failed, you may show an error message or take appropriate action
+                    loginMessageLabel.setText("Login failed. Invalid credentials.");
+                }
             } else {
-                // Login failed, you may show an error message or take appropriate action
-                loginMessageLabel.setText("Login failed. Invalid credentials.");
+                loginMessageLabel.setText("Please enter username and password!");
             }
+        } catch (Exception e) {
+            // Handle exceptions appropriately
+            e.printStackTrace(); // Log or handle the exception as needed
         }
-        else{
-            loginMessageLabel.setText("Please enter username and password!");
-        }
-
-
-
-
     }
+
     @FXML
     void onClickSwitchToRegister(ActionEvent event) throws IOException {
         // get reference to existing hello application and switch scene
