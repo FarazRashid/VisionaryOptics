@@ -152,7 +152,7 @@ public class CustomerHomeController {
 
                 // Add 3 columns to the row
                 for (int j = 0; j < 3 && i + j < products.size(); j++) {
-                    loader = new FXMLLoader(getClass().getResource("card-product.fxml"));
+                    loader = new FXMLLoader(HelloApplication.class.getResource("card-product.fxml"));
                     rowHBox.getChildren().add(loader.load());
 
                     CardProductController controller = loader.getController();
